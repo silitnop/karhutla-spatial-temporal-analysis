@@ -1,16 +1,20 @@
-# 🔥 Spatial-Temporal Clustering & Fire Severity Prediction in Peatland Ecosystems of Kalimantan
+# Spatial-Temporal Clustering & Fire Severity Prediction in Peatland Ecosystems of Kalimantan
 
-> **An End-to-End Data Engineering & Data Analytics Project**
+**An End-to-End Data Engineering & Geospatial Analytics Project**
 
 ## 1. Project Overview
 
-Proyek ini bertujuan untuk menganalisis pola persebaran kebakaran hutan dan lahan (Karhutla) pada ekosistem gambut di Pulau Kalimantan menggunakan pendekatan **Spatial-Temporal Clustering** dan **Fire Severity Prediction**.
+Proyek ini bertujuan untuk menganalisis pola persebaran kebakaran hutan dan lahan (Karhutla) pada ekosistem gambut di Pulau Kalimantan menggunakan pendekatan **Spatial-Temporal Clustering** dan **Fire Severity Analysis & Prediction**.
 
-Fokus utama penelitian adalah mengidentifikasi pola persebaran titik panas (*hotspots*), menemukan wilayah dengan konsentrasi kebakaran tinggi, menganalisis perubahan aktivitas kebakaran berdasarkan waktu, serta memprediksi tingkat keparahan kebakaran berdasarkan karakteristik lingkungan dan faktor pendukung lainnya.
+Penelitian berfokus pada identifikasi pola persebaran titik panas (*hotspots*), pengelompokan wilayah dengan konsentrasi aktivitas kebakaran tinggi, analisis perubahan aktivitas kebakaran berdasarkan waktu, serta eksplorasi faktor lingkungan yang berkaitan dengan kejadian kebakaran.
 
-Penelitian berfokus pada periode **1–30 September 2026**, dengan cakupan lima provinsi di Pulau Kalimantan.
+Selain itu, proyek ini akan mengeksplorasi kemungkinan pengembangan model Machine Learning untuk mengklasifikasikan tingkat keparahan kebakaran berdasarkan ketersediaan dan kualitas data pendukung.
+
+**Main Analysis Period:** 1–30 September 2026.
 
 ### Research Area
+
+Cakupan penelitian meliputi lima provinsi di Pulau Kalimantan:
 
 1. Kalimantan Barat
 2. Kalimantan Tengah
@@ -20,12 +24,12 @@ Penelitian berfokus pada periode **1–30 September 2026**, dengan cakupan lima 
 
 ### Project Objectives
 
-- Mengintegrasikan berbagai sumber data kebakaran, geospasial, lingkungan, dan cuaca.
-- Mengidentifikasi distribusi spasial dan temporal titik panas.
-- Menemukan kelompok wilayah yang memiliki konsentrasi kebakaran tinggi menggunakan clustering.
-- Menganalisis hubungan antara kondisi lingkungan dan kejadian Karhutla.
-- Membangun model machine learning untuk mengklasifikasikan tingkat keparahan kebakaran.
-- Menghasilkan visualisasi dan insight yang dapat membantu memahami pola Karhutla di ekosistem gambut.
+- Mengumpulkan dan mengintegrasikan data kebakaran, geospasial, lingkungan, dan cuaca.
+- Menganalisis distribusi spasial dan temporal titik panas.
+- Mengidentifikasi kelompok wilayah dengan konsentrasi hotspot tinggi.
+- Menganalisis hubungan antara kondisi lingkungan dan aktivitas kebakaran.
+- Mengeksplorasi klasifikasi tingkat keparahan kebakaran berdasarkan data pendukung yang tersedia.
+- Menghasilkan visualisasi dan insight mengenai pola Karhutla pada ekosistem gambut.
 
 ---
 
@@ -33,292 +37,227 @@ Penelitian berfokus pada periode **1–30 September 2026**, dengan cakupan lima 
 
 | Component | Description |
 |---|---|
-| Domain | Environmental & Disaster Analytics |
+| Domain | Environmental Data Engineering & Geospatial Analytics |
 | Main Topic | Forest and Land Fires (Karhutla) |
 | Ecosystem | Peatland Ecosystem |
-| Geographic Scope | 5 Provinces in Kalimantan |
+| Geographic Scope | Five Provinces in Kalimantan |
 | Main Analysis Period | September 1–30, 2026 |
-| Data Engineering | Data Acquisition, ETL/ELT, Data Integration, Data Warehouse |
+| Data Engineering | Data Acquisition, Processing, Integration, ETL |
 | Data Analytics | EDA, Spatial Analysis, Temporal Analysis, Clustering |
-| Machine Learning | Fire Severity Classification |
-| Final Output | Analytical Dataset, Geospatial Analysis, Prediction Model, Dashboard |
+| Machine Learning | Fire Severity Classification, subject to data availability |
+| Dashboard | Google Looker Studio |
+| Final Output | Integrated Dataset, Geospatial Analysis, Analytical Results, Dashboard |
 
-**Important Note:** Data historis sebelum September 2026 digunakan untuk membangun dan mengevaluasi model prediksi. September 2026 menjadi periode utama untuk analisis dan pengujian pada proyek ini.
+**Important Note:**
 
----
-
-# 3. Team Responsibilities & Job Description
-
-## 👨‍💻 A. Data Engineer — Sultan Naufal
-
-**Primary Responsibility:** Building and maintaining the data infrastructure and data pipelines.
-
-Data Engineer bertanggung jawab memastikan seluruh data dari berbagai sumber dapat dikumpulkan, dibersihkan, diintegrasikan, disimpan, dan disiapkan dalam format yang konsisten sehingga dapat digunakan oleh Data Analyst.
-
-### Task Checklist
-
-#### Phase 1 — Data Acquisition
-
-- [ ] Mengidentifikasi sumber data Karhutla dan data pendukung.
-- [ ] Mengumpulkan data hotspot dari NASA FIRMS.
-- [ ] Mengumpulkan data batas administrasi lima provinsi Kalimantan.
-- [ ] Mengumpulkan data peta ekosistem gambut.
-- [ ] Mengumpulkan data cuaca dan curah hujan.
-- [ ] Mengumpulkan data tutupan lahan dan vegetasi.
-- [ ] Mengumpulkan data citra satelit untuk kebutuhan analisis tingkat keparahan kebakaran.
-- [ ] Mendokumentasikan sumber, format, dan karakteristik setiap dataset.
-
-#### Phase 2 — Data Processing & Cleaning
-
-- [ ] Melakukan data profiling untuk memahami struktur dan kualitas data.
-- [ ] Melakukan penanganan missing values.
-- [ ] Menghapus data duplikat.
-- [ ] Melakukan validasi koordinat latitude dan longitude.
-- [ ] Melakukan standarisasi format tanggal dan waktu.
-- [ ] Menyamakan sistem koordinat geospasial (CRS).
-- [ ] Melakukan filtering data berdasarkan lima provinsi.
-- [ ] Melakukan filtering periode September 2026.
-- [ ] Melakukan validasi spasial antara hotspot dan area gambut.
-- [ ] Menyusun data quality checks.
-
-#### Phase 3 — ETL/ELT Pipeline Development
-
-- [ ] Membangun pipeline untuk mengambil data dari berbagai sumber.
-- [ ] Membuat proses Extract untuk pengambilan data.
-- [ ] Membuat proses Transform untuk cleaning dan integrasi.
-- [ ] Membuat proses Load untuk menyimpan data ke database.
-- [ ] Mengotomatisasi proses pipeline.
-- [ ] Membuat logging untuk memantau proses ETL.
-- [ ] Menambahkan error handling pada pipeline.
-- [ ] Memastikan pipeline dapat dijalankan ulang tanpa menghasilkan duplikasi data.
-- [ ] Membuat dokumentasi pipeline.
-
-#### Phase 4 — Database & Data Warehouse
-
-- [ ] Merancang struktur database.
-- [ ] Membuat database menggunakan PostgreSQL dan PostGIS.
-- [ ] Membuat tabel untuk data hotspot.
-- [ ] Membuat tabel untuk data cuaca dan curah hujan.
-- [ ] Membuat tabel untuk data gambut.
-- [ ] Membuat tabel untuk data administratif.
-- [ ] Membuat tabel untuk data kebakaran dan burn severity.
-- [ ] Membuat relasi antar tabel.
-- [ ] Membuat spatial index untuk mempercepat spatial queries.
-- [ ] Membuat analytical dataset yang siap digunakan Data Analyst.
-
-#### Phase 5 — Data Delivery & Documentation
-
-- [ ] Menyediakan dataset final untuk Data Analyst.
-- [ ] Membuat data dictionary.
-- [ ] Mendokumentasikan skema database.
-- [ ] Mendokumentasikan alur ETL.
-- [ ] Membuat dokumentasi sumber data.
-- [ ] Melakukan validasi akhir dataset.
-- [ ] Mengintegrasikan pipeline dan dokumentasi ke GitHub.
-
-**Data Engineer Deliverables:**
-
-1. Raw Data Collection.
-2. Cleaned & Integrated Dataset.
-3. Automated ETL Pipeline.
-4. PostgreSQL + PostGIS Database.
-5. Data Warehouse / Analytical Data Mart.
-6. Data Dictionary.
-7. Pipeline Documentation.
-8. Data Quality Report.
+Data historis sebelum September 2026 dapat digunakan untuk membangun dan mengevaluasi model prediksi. September 2026 merupakan periode utama analisis proyek dan dapat digunakan sebagai periode pengujian apabila data target atau ground truth tersedia.
 
 ---
 
-## 📊 B. Data Analyst — Project Partner
+## 3. Team Responsibilities
 
-**Primary Responsibility:** Analyzing spatial-temporal patterns, identifying fire clusters, and developing predictive models.
+### A. Data Engineer — Sultan Naufal
 
-Data Analyst bertanggung jawab mengolah analytical dataset yang telah disediakan Data Engineer untuk menemukan pola, menghasilkan insight, dan membangun model prediksi tingkat keparahan kebakaran.
+**Primary Responsibility:** Data acquisition, processing, integration, database management, and data pipeline development.
 
-### Task Checklist
+#### Phase 1 — Data Source Research
+- Mengidentifikasi sumber data Karhutla dan data pendukung.
+- Memeriksa ketersediaan dan format dataset.
+- Mendokumentasikan sumber, lisensi, resolusi, dan cakupan temporal data.
+- Menentukan metode pengambilan data.
 
-#### Phase 1 — Exploratory Data Analysis (EDA)
+#### Phase 2 — Data Processing
+- Melakukan data profiling.
+- Menangani missing values dan duplikasi.
+- Melakukan standarisasi format data.
+- Memvalidasi koordinat dan tanggal.
+- Menyesuaikan sistem koordinat geospasial (CRS).
+- Memfilter data berdasarkan wilayah dan periode penelitian.
 
-- [ ] Memahami struktur analytical dataset.
-- [ ] Melakukan analisis distribusi data hotspot.
-- [ ] Menganalisis jumlah hotspot berdasarkan provinsi.
-- [ ] Menganalisis distribusi kebakaran berdasarkan tanggal.
-- [ ] Mengidentifikasi tren aktivitas kebakaran.
-- [ ] Menganalisis hubungan hotspot dengan curah hujan.
-- [ ] Menganalisis hubungan hotspot dengan suhu dan kelembapan.
-- [ ] Menganalisis distribusi hotspot pada area gambut.
-- [ ] Membuat visualisasi awal menggunakan Python.
+#### Phase 3 — Data Pipeline Development
+- Mengembangkan proses data ingestion.
+- Membuat proses extraction, transformation, dan loading.
+- Mengintegrasikan data dari berbagai sumber.
+- Menambahkan validasi kualitas data.
+- Mengimplementasikan logging dan error handling sesuai kebutuhan.
+- Menguji konsistensi hasil pipeline.
+
+#### Phase 4 — Database Management
+- Merancang struktur database.
+- Mengimplementasikan PostgreSQL dan PostGIS.
+- Membuat tabel staging dan tabel analitik.
+- Mengelola relasi dan spatial index.
+- Menyediakan dataset yang siap digunakan Data Analyst.
+
+#### Phase 5 — Documentation & Data Delivery
+- Membuat data dictionary.
+- Mendokumentasikan sumber dan alur data.
+- Menyediakan dataset hasil pemrosesan.
+- Melakukan validasi akhir.
+- Mendokumentasikan struktur database dan pipeline.
+
+### B. Data Analyst — Daniel Putra
+
+**Primary Responsibility:** Exploratory analysis, spatial-temporal analysis, clustering, predictive modeling, and visualization.
+
+#### Phase 1 — Exploratory Data Analysis
+- Memahami struktur dan karakteristik dataset.
+- Menganalisis distribusi hotspot.
+- Menganalisis jumlah hotspot berdasarkan provinsi.
+- Mengidentifikasi tren aktivitas kebakaran berdasarkan tanggal.
+- Mengeksplorasi hubungan hotspot dengan kondisi lingkungan.
 
 #### Phase 2 — Spatial Analysis
-
-- [ ] Memetakan distribusi hotspot di lima provinsi.
-- [ ] Mengidentifikasi wilayah dengan konsentrasi hotspot tertinggi.
-- [ ] Melakukan overlay antara hotspot dan peta gambut.
-- [ ] Menganalisis persebaran kebakaran berdasarkan wilayah administratif.
-- [ ] Mengidentifikasi wilayah rawan kebakaran.
-- [ ] Membuat peta distribusi kebakaran menggunakan GeoPandas dan Folium.
+- Memetakan distribusi hotspot.
+- Mengidentifikasi wilayah dengan konsentrasi hotspot tinggi.
+- Melakukan overlay hotspot dengan wilayah gambut.
+- Menganalisis distribusi berdasarkan wilayah administratif.
+- Membuat visualisasi geospasial.
 
 #### Phase 3 — Spatial-Temporal Clustering
+- Menentukan variabel clustering.
+- Melakukan preprocessing.
+- Mengevaluasi penggunaan DBSCAN.
+- Menentukan parameter clustering.
+- Menganalisis distribusi dan perubahan cluster berdasarkan waktu.
+- Menginterpretasikan hasil clustering.
 
-- [ ] Menentukan variabel untuk proses clustering.
-- [ ] Melakukan preprocessing data clustering.
-- [ ] Menerapkan algoritma DBSCAN untuk mengidentifikasi kelompok hotspot.
-- [ ] Mengevaluasi parameter clustering seperti epsilon dan minimum samples.
-- [ ] Mengidentifikasi cluster dengan konsentrasi kebakaran tinggi.
-- [ ] Menganalisis perubahan pola cluster berdasarkan waktu.
-- [ ] Mengidentifikasi wilayah dengan aktivitas kebakaran berulang.
-- [ ] Membuat visualisasi hasil clustering.
-- [ ] Menginterpretasikan karakteristik setiap cluster.
-
-#### Phase 4 — Fire Severity Prediction
-
-- [ ] Menentukan target variabel tingkat keparahan kebakaran.
-- [ ] Menentukan fitur yang digunakan untuk prediksi.
-- [ ] Melakukan feature engineering.
-- [ ] Melakukan preprocessing data untuk machine learning.
-- [ ] Membagi data training dan testing berdasarkan waktu.
-- [ ] Membangun model Random Forest.
-- [ ] Membandingkan performa model dengan XGBoost.
-- [ ] Melakukan hyperparameter tuning.
-- [ ] Mengevaluasi model menggunakan Accuracy, Precision, Recall, F1-Score, dan Confusion Matrix.
-- [ ] Melakukan feature importance analysis.
-- [ ] Menginterpretasikan hasil prediksi tingkat keparahan kebakaran.
+#### Phase 4 — Fire Severity Analysis & Prediction
+- Memeriksa ketersediaan data untuk menentukan target severity.
+- Menentukan fitur prediksi.
+- Melakukan feature engineering.
+- Mengembangkan model klasifikasi apabila label target tersedia dan valid.
+- Mengevaluasi model menggunakan metrik yang sesuai.
+- Menginterpretasikan hasil model.
 
 #### Phase 5 — Visualization & Reporting
+- Membuat peta distribusi hotspot.
+- Memvisualisasikan hasil clustering.
+- Membuat grafik temporal.
+- Membuat visualisasi analisis severity.
+- Mengembangkan dashboard menggunakan Google Looker Studio.
+- Menyusun insight dan laporan akhir.
 
-- [ ] Membuat peta interaktif persebaran hotspot.
-- [ ] Membuat visualisasi hasil spatial clustering.
-- [ ] Membuat grafik temporal aktivitas kebakaran.
-- [ ] Membuat visualisasi distribusi tingkat keparahan kebakaran.
-- [ ] Membuat dashboard analisis.
-- [ ] Menyusun insight berdasarkan hasil analisis.
-- [ ] Menyusun kesimpulan dan rekomendasi.
+### Shared Responsibilities
 
-**Data Analyst Deliverables:**
-
-1. Exploratory Data Analysis Report.
-2. Spatial Distribution Analysis.
-3. Spatial-Temporal Clustering Results.
-4. Fire Severity Prediction Model.
-5. Model Evaluation Report.
-6. Interactive Geospatial Visualization.
-7. Analytical Dashboard.
-8. Final Project Report.
+- Menentukan kebutuhan dan format data.
+- Menyepakati struktur dataset.
+- Melakukan integrasi Data Engineering dan Data Analytics.
+- Melakukan validasi hasil akhir.
+- Menyusun dokumentasi dan laporan proyek.
 
 ---
 
-# 4. Data Sources
+## 4. Data Sources
 
-Sumber data yang direncanakan untuk digunakan:
+Sumber data berikut merupakan kandidat yang akan dievaluasi berdasarkan ketersediaan, kualitas, lisensi, dan kesesuaian periode penelitian.
 
-| Dataset | Source | Purpose |
+| Dataset | Candidate Source | Purpose |
 |---|---|---|
 | Fire Hotspots | NASA FIRMS | Identifikasi titik panas |
-| Administrative Boundaries | BIG / GADM | Batas lima provinsi |
-| Peatland Distribution | KLHK / BRGM / BIG | Identifikasi ekosistem gambut |
+| Administrative Boundaries | BIG / GADM | Batas wilayah administratif |
+| Peatland Distribution | KLHK / BRGM / BIG | Identifikasi wilayah gambut |
 | Rainfall | CHIRPS | Analisis curah hujan |
-| Weather Variables | ERA5 / ERA5-Land | Suhu, kelembapan dan variabel cuaca |
-| Satellite Imagery | Sentinel-2 | Analisis area terbakar dan burn severity |
-| Land Cover | ESA WorldCover | Identifikasi tutupan lahan |
+| Weather Variables | ERA5 / ERA5-Land | Data cuaca |
+| Satellite Imagery | Sentinel-2 | Analisis area terbakar dan severity |
+| Land Cover | ESA WorldCover | Informasi tutupan lahan |
 
 ### Data Source Links
 
 - NASA FIRMS: https://firms.modaps.eosdis.nasa.gov/
 - Google Earth Engine: https://earthengine.google.com/
-- Sentinel-2: https://dataspace.copernicus.eu/
+- Copernicus Data Space: https://dataspace.copernicus.eu/
 - CHIRPS: https://www.chc.ucsb.edu/data/chirps
 - ERA5: https://cds.climate.copernicus.eu/
 - BIG: https://tanahair.indonesia.go.id/
 - GADM: https://gadm.org/
 - ESA WorldCover: https://worldcover2021.esa.int/
 
-*Catatan: Ketersediaan, resolusi, lisensi, dan cakupan temporal setiap dataset harus divalidasi sebelum digunakan. Data peta gambut juga harus menggunakan sumber dan versi yang terdokumentasi.*
+**Note:** Tidak semua sumber data harus digunakan. Pemilihan akhir akan mengikuti hasil eksplorasi dan validasi ketersediaan dataset.
 
 ---
 
-# 5. Technology Stack
+## 5. Technology Stack
 
-## Data Engineering
+Technology stack disusun berdasarkan kebutuhan proyek. Tools yang bersifat opsional hanya akan digunakan apabila memang diperlukan.
 
-| Technology | Usage |
-|---|---|
-| Python | Main programming language |
-| Pandas | Data manipulation |
-| GeoPandas | Geospatial data processing |
-| Rasterio | Satellite raster processing |
-| SQL | Database queries |
-| PostgreSQL | Relational database |
-| PostGIS | Spatial database extension |
-| Apache Airflow / Prefect | Workflow orchestration |
-| Git & GitHub | Version control |
+### Data Engineering
 
-## Data Analytics & Machine Learning
+| Technology | Purpose | Status |
+|---|---|---|
+| Python | Main programming language | Planned |
+| Pandas | Data manipulation | Planned |
+| NumPy | Numerical processing | Planned |
+| GeoPandas | Geospatial processing | Planned |
+| Shapely | Geometry operations | Planned |
+| Rasterio | Raster processing | As needed |
+| SQL | Database queries | Planned |
+| PostgreSQL | Relational database | Selected |
+| PostGIS | Spatial database extension | Selected |
+| Prefect | Workflow orchestration | Optional |
+| Docker | Environment management | Optional |
+| Git & GitHub | Version control | Used |
 
-| Technology | Usage |
+### Data Analytics & Machine Learning
+
+| Technology | Purpose |
 |---|---|
 | Python | Data analysis |
 | Pandas & NumPy | Data manipulation |
-| Matplotlib & Seaborn | Data visualization |
 | GeoPandas | Spatial analysis |
-| Folium | Interactive maps |
 | Scikit-learn | Clustering and machine learning |
 | DBSCAN | Spatial clustering |
-| Random Forest | Severity classification |
-| XGBoost | Model comparison |
-| SHAP | Model interpretability |
-| Streamlit | Analytical dashboard |
+| Random Forest | Candidate classification model |
+| XGBoost | Candidate comparison model |
+| Matplotlib / Seaborn | Data visualization |
+| Folium | Interactive geospatial maps |
 
-## Supporting Tools
+### Dashboard & Supporting Tools
 
-| Tool | Usage |
+| Tool | Purpose |
 |---|---|
-| Google Earth Engine | Satellite data processing |
-| Jupyter Notebook / Google Colab | Experimentation |
+| Google Looker Studio | Analytical dashboard |
+| Google Sheets | Possible dashboard data source |
+| BigQuery | Optional analytical data delivery |
 | VS Code | Development environment |
 | DBeaver | Database management |
-| GitHub | Project collaboration |
-
-*Tools yang tercantum merupakan technology stack yang direncanakan. Tidak semua teknologi harus digunakan sekaligus. Airflow dan Prefect, misalnya, merupakan alternatif orchestration.*
+| QGIS | Geospatial data inspection |
+| Jupyter Notebook / Google Colab | Data exploration and experimentation |
 
 ---
 
-# 6. System Architecture
+## 6. System Architecture
 
-The project follows an end-to-end data architecture consisting of five major layers.
+The project follows an end-to-end data workflow consisting of data acquisition, processing, storage, analytics, and visualization.
 
 ```mermaid
 flowchart TD
     A["DATA SOURCES"]
     A1["NASA FIRMS"]
-    A2["Sentinel-2"]
-    A3["CHIRPS"]
-    A4["ERA5"]
-    A5["Peatland & Administrative Maps"]
+    A2["Weather Data"]
+    A3["Peatland Maps"]
+    A4["Administrative Maps"]
+    A5["Satellite Imagery"]
 
     B["DATA INGESTION"]
-    C["DATA LAKE - RAW DATA"]
-    D["ETL / ELT PROCESSING"]
-    D1["Data Cleaning"]
-    D2["Data Validation"]
-    D3["Spatial Processing"]
-    D4["Data Integration"]
+    C["RAW DATA STORAGE"]
+    D["DATA PROCESSING"]
+    D1["Cleaning"]
+    D2["Validation"]
+    D3["Transformation"]
+    D4["Spatial Integration"]
 
-    E["DATA STORAGE"]
-    E1["PostgreSQL"]
-    E2["PostGIS"]
+    E["POSTGRESQL + POSTGIS"]
+    F["ANALYTICAL DATASET"]
 
-    F["ANALYTICAL DATA MART"]
     G["DATA ANALYTICS"]
     G1["EDA"]
-    G2["Spatial Analysis"]
-    G3["DBSCAN Clustering"]
-    G4["Fire Severity Prediction"]
+    G2["Spatial & Temporal Analysis"]
+    G3["Clustering"]
+    G4["Severity Analysis & Prediction"]
 
-    H["OUTPUT"]
-    H1["Geospatial Dashboard"]
-    H2["Clustering Visualization"]
-    H3["Prediction Results"]
-    H4["Analytical Report"]
+    H["DATA DELIVERY"]
+    I["GOOGLE LOOKER STUDIO"]
 
     A --> B
     A1 --> B
@@ -333,8 +272,6 @@ flowchart TD
     D --> D3
     D --> D4
     D --> E
-    E --> E1
-    E --> E2
     E --> F
     F --> G
     G --> G1
@@ -342,137 +279,136 @@ flowchart TD
     G --> G3
     G --> G4
     G --> H
-    H --> H1
-    H --> H2
-    H --> H3
-    H --> H4
+    H --> I
 ```
 
 ### Architecture Explanation
 
-1. **Data Sources:** Mengambil data dari berbagai sumber eksternal seperti NASA FIRMS, Sentinel-2, CHIRPS, dan ERA5.
-2. **Data Ingestion:** Mengambil data melalui API, download, atau Google Earth Engine.
-3. **Raw Data Storage:** Menyimpan data asli sebelum dilakukan transformasi.
-4. **ETL/ELT Processing:** Melakukan cleaning, validasi, standardisasi, dan integrasi data.
-5. **Data Storage:** Menyimpan data terintegrasi menggunakan PostgreSQL dan PostGIS.
-6. **Analytical Data Mart:** Menyediakan dataset yang sudah terstruktur untuk kebutuhan analisis.
-7. **Data Analytics:** Melakukan EDA, spatial-temporal clustering, dan machine learning.
-8. **Output:** Menghasilkan dashboard, peta interaktif, hasil prediksi, dan laporan analisis.
+1. **Data Sources:** Mengambil data dari sumber eksternal.
+2. **Data Ingestion:** Mengumpulkan data melalui API, download, atau metode lain.
+3. **Raw Data Storage:** Menyimpan salinan data sumber sebelum transformasi.
+4. **Data Processing:** Melakukan cleaning, validasi, standardisasi, dan integrasi.
+5. **Database:** Menyimpan data terstruktur menggunakan PostgreSQL dan PostGIS.
+6. **Analytical Dataset:** Menyediakan data yang sudah diproses untuk analisis.
+7. **Data Analytics:** Melakukan EDA, analisis spasial-temporal, clustering, dan pemodelan.
+8. **Data Delivery:** Menyediakan hasil analisis untuk dashboard.
+9. **Visualization:** Menampilkan hasil menggunakan Google Looker Studio.
+
+*Architecture ini merupakan rancangan awal dan dapat berubah mengikuti implementasi.*
 
 ---
 
-# 7. Proposed Database Design
+## 7. Proposed Database Design
 
-Database menggunakan PostgreSQL dengan ekstensi PostGIS untuk mendukung penyimpanan dan pemrosesan data geospasial.
+Database direncanakan menggunakan PostgreSQL dan PostGIS untuk mendukung penyimpanan data tabular dan geospasial.
 
-### Proposed Tables
+Struktur tabel akan ditentukan setelah proses data profiling dan analisis kebutuhan data.
 
-| Table | Description |
+### Initial Data Categories
+
+| Data Category | Description |
 |---|---|
-| fact_hotspots | Informasi titik panas |
-| fact_weather | Informasi kondisi cuaca |
-| fact_burned_area | Informasi area terbakar dan burn severity |
-| dim_date | Dimensi tanggal |
-| dim_location | Informasi provinsi dan kabupaten/kota |
-| dim_peatland | Informasi wilayah ekosistem gambut |
-| dim_landcover | Informasi tutupan lahan |
+| Hotspot | Informasi deteksi titik panas |
+| Weather | Informasi kondisi cuaca |
+| Peatland | Informasi area ekosistem gambut |
+| Administrative | Informasi wilayah administratif |
+| Land Cover | Informasi tutupan lahan |
+| Burned Area | Informasi area terbakar dan severity jika tersedia |
 
 ### Proposed Data Flow
 
-`Raw Data → Staging → Data Cleaning → Data Integration → PostgreSQL/PostGIS → Analytical Data Mart`
+`Raw Data → Staging → Data Cleaning → Data Integration → PostgreSQL/PostGIS → Analytical Dataset`
 
 ---
 
-# 8. Proposed Analytical Methods
+## 8. Proposed Analytical Methods
+
+Metode analisis akan disesuaikan dengan karakteristik dan ketersediaan data.
 
 | Method | Purpose | Responsible |
 |---|---|---|
 | Data Profiling | Memahami kualitas data | Data Engineer |
-| ETL/ELT | Mengintegrasikan data | Data Engineer |
-| Spatial Overlay | Mengidentifikasi hotspot pada gambut | Shared |
-| Exploratory Data Analysis | Memahami karakteristik data | Data Analyst |
+| ETL | Pengolahan dan integrasi data | Data Engineer |
+| Spatial Overlay | Analisis hubungan hotspot dan gambut | Shared |
+| EDA | Memahami karakteristik data | Data Analyst |
+| Spatial Analysis | Menganalisis distribusi geografis | Data Analyst |
+| Temporal Analysis | Menganalisis pola waktu | Data Analyst |
 | DBSCAN | Mengidentifikasi cluster hotspot | Data Analyst |
-| Temporal Analysis | Menganalisis pola waktu kebakaran | Data Analyst |
-| Random Forest | Prediksi tingkat keparahan | Data Analyst |
-| XGBoost | Model pembanding | Data Analyst |
-| SHAP | Interpretasi fitur model | Data Analyst |
+| Random Forest | Kandidat model klasifikasi | Data Analyst |
+| XGBoost | Kandidat model pembanding | Data Analyst |
 
 ---
 
-# 9. Important Methodological Considerations
+## 9. Important Methodological Considerations
 
-Agar hasil penelitian dapat dipertanggungjawabkan secara teknis, terdapat beberapa hal yang perlu diperhatikan:
-
-**1. Hotspot is not the same as fire severity.**
+### 1. Hotspot is not the same as fire severity
 
 Data hotspot NASA FIRMS merupakan deteksi anomali termal, bukan pengukuran langsung tingkat keparahan kebakaran.
 
-Oleh karena itu, diperlukan data tambahan seperti Sentinel-2 untuk menghitung perubahan spektral menggunakan dNBR (Differenced Normalized Burn Ratio) atau pendekatan lain untuk membentuk label tingkat keparahan.
+Diperlukan data tambahan seperti Sentinel-2 untuk memperoleh informasi area terbakar dan membentuk label severity yang dapat dipertanggungjawabkan.
 
-**2. Temporal clustering.**
+### 2. Temporal clustering
 
-DBSCAN dapat digunakan untuk mengelompokkan titik berdasarkan koordinat dan waktu. Salah satu pendekatan adalah menggunakan Haversine distance dan membatasi rentang waktu pengamatan.
+Clustering perlu mempertimbangkan koordinat dan waktu kejadian. Pemilihan metode jarak dan parameter harus disesuaikan dengan karakteristik data.
 
-**3. Prediction target.**
+### 3. Severity prediction
 
-Klasifikasi tingkat keparahan perlu memiliki target yang jelas, misalnya:
+Model klasifikasi severity hanya dikembangkan apabila target label tersedia, valid, dan memiliki dasar metodologi yang jelas.
 
-- Unburned / No Burn
-- Low Severity
-- Moderate Severity
-- High Severity
+### 4. Model validation
 
-Batas klasifikasi harus ditentukan berdasarkan referensi ilmiah dan metode pengukuran yang dipilih.
+Pembagian data perlu mempertimbangkan urutan waktu untuk mengurangi risiko data leakage.
 
-**4. Model validation.**
+### 5. Data availability
 
-Gunakan pembagian data berdasarkan waktu agar tidak terjadi data leakage. Data historis digunakan untuk training dan validasi, sedangkan periode September 2026 dapat digunakan sebagai periode pengujian jika label ground truth tersedia.
-
-**5. Spatial validation.**
-
-Pertimbangkan spatial leakage apabila titik dari area yang sama tersebar ke data training dan testing. Spatial holdout dapat digunakan sebagai evaluasi tambahan.
+Ketersediaan data, resolusi spasial, temporal coverage, dan kualitas sumber akan memengaruhi metode analisis yang dapat diterapkan.
 
 ---
 
-# 10. Repository Structure
+## 10. Repository Structure
 
 ```text
 karhutla-spatial-temporal-analysis/
 │
+├── README.md
+├── requirements.txt
+├── .gitignore
+├── LICENSE
+│
 ├── data/
+│   ├── README.md
 │   ├── raw/
-│   │   ├── hotspots/
-│   │   ├── weather/
-│   │   ├── peatland/
-│   │   ├── satellite/
-│   │   └── administrative/
-│   │
+│   ├── staging/
 │   ├── processed/
 │   └── final/
 │
 ├── data_engineering/
 │   ├── ingestion/
-│   ├── extraction/
 │   ├── transformation/
 │   ├── validation/
-│   ├── loading/
 │   ├── pipelines/
 │   └── sql/
 │
 ├── data_analytics/
-│   ├── eda/
-│   ├── spatial_analysis/
-│   ├── temporal_analysis/
+│   ├── notebooks/
 │   ├── clustering/
 │   ├── modeling/
-│   └── evaluation/
-│
-├── dashboard/
+│   ├── evaluation/
+│   └── visualization/
 │
 ├── database/
 │   ├── schema/
 │   ├── staging/
-│   └── analytical_mart/
+│   ├── analytical_mart/
+│   └── README.md
+│
+├── dashboard/
+│   ├── README.md
+│   ├── looker_studio/
+│   │   ├── README.md
+│   │   ├── screenshots/
+│   │   └── dashboard_links.md
+│   └── exports/
 │
 ├── docs/
 │   ├── architecture/
@@ -481,79 +417,71 @@ karhutla-spatial-temporal-analysis/
 │   └── reports/
 │
 ├── tests/
-│   ├── test_pipeline.py
-│   └── test_data_quality.py
 │
-├── requirements.txt
-├── .gitignore
-└── README.md
+└── .github/
+    └── ISSUE_TEMPLATE/
 ```
 
 ---
 
-# 11. Project Milestones
+## 11. Project Milestones
 
-Proposed development timeline: **6–8 Weeks**
+Estimated development timeline: 6–8 weeks.
 
-| Week | Data Engineer | Data Analyst |
+| Phase | Data Engineer | Data Analyst |
 |---|---|---|
-| 1 | Research data sources and data acquisition | Research methodology and variables |
-| 2 | Data ingestion and raw storage | Initial EDA |
-| 3 | Data cleaning and transformation | Spatial and temporal analysis |
-| 4 | Database and data integration | DBSCAN clustering |
-| 5 | Analytical data mart and validation | Feature engineering |
-| 6 | Pipeline testing and documentation | Machine learning development |
-| 7 | Data delivery and optimization | Model evaluation and dashboard |
-| 8 | Final integration | Final analysis and reporting |
+| 1. Research | Data source research | Methodology research |
+| 2. Acquisition | Data ingestion | Initial data exploration |
+| 3. Processing | Cleaning and transformation | EDA and spatial analysis |
+| 4. Database | Database development | Clustering |
+| 5. Integration | Analytical dataset delivery | Feature engineering |
+| 6. Development | Pipeline testing | Predictive modeling |
+| 7. Visualization | Data delivery | Dashboard development |
+| 8. Finalization | Documentation and integration | Evaluation and reporting |
+
+*Timeline merupakan estimasi dan dapat berubah mengikuti ketersediaan data serta kompleksitas pengolahan.*
 
 ---
 
-# 12. Definition of Done
-
-Proyek dinyatakan selesai apabila:
+## 12. Definition of Done
 
 ### Data Engineering
-
-- [ ] Semua sumber data utama terdokumentasi.
-- [ ] Data berhasil dikumpulkan.
-- [ ] Pipeline ETL berhasil dijalankan.
+- [ ] Data sources telah diidentifikasi dan didokumentasikan.
+- [ ] Dataset utama berhasil dikumpulkan.
 - [ ] Data telah melalui proses cleaning dan validasi.
-- [ ] Database PostgreSQL/PostGIS berhasil dibuat.
+- [ ] Database berhasil diimplementasikan.
 - [ ] Analytical dataset tersedia.
-- [ ] Dokumentasi pipeline selesai.
+- [ ] Pipeline dapat dijalankan dan diuji.
+- [ ] Dokumentasi teknis tersedia.
 
 ### Data Analytics
-
 - [ ] EDA selesai.
 - [ ] Spatial analysis selesai.
 - [ ] Temporal analysis selesai.
-- [ ] Clustering berhasil dilakukan dan dievaluasi.
-- [ ] Model prediksi berhasil dibangun.
-- [ ] Model telah dievaluasi.
-- [ ] Dashboard berhasil dibuat.
-- [ ] Final analytical report selesai.
+- [ ] Clustering dilakukan dan dievaluasi.
+- [ ] Severity analysis dilakukan.
+- [ ] Model prediksi dikembangkan jika target data tersedia.
+- [ ] Dashboard selesai.
+- [ ] Laporan hasil analisis tersedia.
 
 ### Final Integration
-
 - [ ] Data Engineering dan Data Analytics terintegrasi.
-- [ ] Seluruh kode tersedia di GitHub.
-- [ ] README dan dokumentasi diperbarui.
+- [ ] Kode dan dokumentasi tersedia di GitHub.
 - [ ] Hasil proyek dapat direproduksi.
+- [ ] Seluruh hasil telah melalui validasi.
 
 ---
 
-# 13. Expected Final Deliverables
+## 13. Expected Final Deliverables
 
-Pada akhir proyek, diharapkan tersedia:
-
-1. **End-to-End Data Pipeline:** Pipeline pengumpulan dan pengolahan data Karhutla.
-2. **Geospatial Database:** Database spasial menggunakan PostgreSQL dan PostGIS.
-3. **Integrated Analytical Dataset:** Dataset terintegrasi dari berbagai sumber.
-4. **Spatial-Temporal Clustering:** Identifikasi pola dan kelompok persebaran hotspot.
-5. **Fire Severity Prediction:** Model klasifikasi tingkat keparahan kebakaran.
-6. **Interactive Dashboard:** Visualisasi distribusi dan pola kebakaran.
-7. **Technical Documentation:** Dokumentasi proses Data Engineering dan Data Analytics.
-8. **Final Report:** Hasil analisis, evaluasi model, dan kesimpulan penelitian.
+1. Data Collection and Processing Pipeline.
+2. PostgreSQL + PostGIS Geospatial Database.
+3. Integrated Analytical Dataset.
+4. Spatial-Temporal Clustering Results.
+5. Fire Severity Analysis and Prediction, subject to data availability.
+6. Google Looker Studio Dashboard.
+7. Technical Documentation.
+8. Final Analytical Report.
 
 ---
 
@@ -561,17 +489,17 @@ Pada akhir proyek, diharapkan tersedia:
 
 | Name | Role | Main Responsibility |
 |---|---|---|
-| Sultan Naufal | Data Engineer | Data Infrastructure, ETL/ELT, Database, Data Integration |
-| Project Partner | Data Analyst | EDA, Spatial Analysis, Clustering, Machine Learning, Visualization |
+| Sultan Naufal | Data Engineer | Data Acquisition, ETL, Database, Data Integration |
+| Daniel Putra | Data Analyst | EDA, Spatial Analysis, Clustering, Machine Learning, Visualization |
 
 ---
 
-**Project Status:** 🚧 In Progress
+**Project Status:** In Progress
 
 **Project Domain:** Environmental Data Engineering & Geospatial Analytics
 
-**Project Period:** September 2026 (Main Analysis Period)
+**Main Analysis Period:** September 2026
 
 **Project Location:** Kalimantan, Indonesia
 
-**Project Goal:** Building an end-to-end data solution to analyze spatial-temporal fire patterns and predict fire severity in Kalimantan's peatland ecosystems.
+**Project Goal:** Developing an end-to-end data solution to analyze spatial-temporal fire patterns and investigate fire severity in peatland ecosystems across Kalimantan.
