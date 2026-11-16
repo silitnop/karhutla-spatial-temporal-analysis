@@ -69,6 +69,9 @@ Data historis sebelum September 2026 dapat digunakan untuk membangun dan mengeva
 #### Phase 2 — Data Processing
 - Melakukan data profiling.
 - Menangani missing values dan duplikasi.
+- Mengidentifikasi outlier dan anomali data.
+- Memastikan konsistensi satuan pengukuran.
+- Mempertahankan data mentah sebagai sumber awal (raw data preservation).
 - Melakukan standarisasi format data.
 - Memvalidasi koordinat dan tanggal.
 - Menyesuaikan sistem koordinat geospasial (CRS).
@@ -85,6 +88,9 @@ Data historis sebelum September 2026 dapat digunakan untuk membangun dan mengeva
 #### Phase 4 — Database Management
 - Merancang struktur database.
 - Mengimplementasikan PostgreSQL dan PostGIS.
+- Menentukan tipe data dan constraint tabel.
+- Mengoptimalkan query database sesuai kebutuhan.
+- Menentukan struktur penyimpanan data spasial.
 - Membuat tabel staging dan tabel analitik.
 - Mengelola relasi dan spatial index.
 - Menyediakan dataset yang siap digunakan Data Analyst.
