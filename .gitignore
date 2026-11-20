@@ -1,48 +1,96 @@
 
-# Python cache
-__pycache__/
-*.py[cod]
-*$py.class
+# ==========================================
+# DATASETS
+# ==========================================
 
-# Virtual environment
-venv/
-.venv/
-env/
+# Raw datasets - original source files
+data/raw/*
+!data/raw/.gitkeep
 
-# Jupyter Notebook
-.ipynb_checkpoints/
+# Processed datasets - hasil preprocessing
+data/processed/*
+!data/processed/.gitkeep
 
-# Environment variables and secrets
-.env
-.env.*
-!.env.example
+# Final datasets
+data/final/*
+!data/final/.gitkeep
 
-# IDE and editor
-.vscode/
-.idea/
+# Staging datasets
+data/staging/*
+!data/staging/.gitkeep
 
-# Operating system
-.DS_Store
-Thumbs.db
-desktop.ini
+# ==========================================
+# DATABASE
+# ==========================================
 
-# Logs
-*.log
+database/staging/*
+!database/staging/.gitkeep
 
-# Temporary files
-*.tmp
-*.bak
+database/analytical_mart/*
+!database/analytical_mart/.gitkeep
 
-# Local database files
+# Ignore local database files
 *.db
 *.sqlite
 *.sqlite3
 
-# Generated exports
-*.tmp.geojson
-*.tmp.csv
+# ==========================================
+# NOTEBOOKS
+# ==========================================
 
-# Python test cache
-.pytest_cache/
-.coverage
-htmlcov/
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# ==========================================
+# PYTHON
+# ==========================================
+
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+venv/
+.venv/
+env/
+
+# ==========================================
+# ENVIRONMENT & SECRETS
+# ==========================================
+
+.env
+.env.*
+!.env.example
+
+# ==========================================
+# IDE & EDITOR
+# ==========================================
+
+.vscode/
+.idea/
+*.code-workspace
+
+# ==========================================
+# OPERATING SYSTEM
+# ==========================================
+
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ==========================================
+# LOGS & TEMPORARY FILES
+# ==========================================
+
+*.log
+*.tmp
+*.bak
+*.swp
+
+# ==========================================
+# DASHBOARD EXPORTS
+# ==========================================
+
+dashboard/exports/*
+!dashboard/exports/.gitkeep
