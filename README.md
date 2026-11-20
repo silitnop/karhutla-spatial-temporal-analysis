@@ -10,7 +10,7 @@ Penelitian berfokus pada identifikasi pola persebaran titik panas (*hotspots*), 
 
 Selain itu, proyek ini akan mengeksplorasi kemungkinan pengembangan model Machine Learning untuk mengklasifikasikan tingkat keparahan kebakaran berdasarkan ketersediaan dan kualitas data pendukung.
 
-**Main Analysis Period:** 1–30 September 2026.
+**Main Analysis Period:** September 1–30, 2026.
 
 ### Research Area
 
@@ -61,23 +61,26 @@ Data historis sebelum September 2026 dapat digunakan untuk membangun dan mengeva
 **Primary Responsibility:** Data acquisition, processing, integration, database management, and data pipeline development.
 
 #### Phase 1 — Data Source Research
+
 - Mengidentifikasi sumber data Karhutla dan data pendukung.
 - Memeriksa ketersediaan dan format dataset.
 - Mendokumentasikan sumber, lisensi, resolusi, dan cakupan temporal data.
 - Menentukan metode pengambilan data.
 
 #### Phase 2 — Data Processing
+
 - Melakukan data profiling.
 - Menangani missing values dan duplikasi.
-- Mengidentifikasi outlier dan anomali data.
+- Mengidentifikasi anomali data.
 - Memastikan konsistensi satuan pengukuran.
-- Mempertahankan data mentah sebagai sumber awal (raw data preservation).
+- Mempertahankan data mentah sebagai sumber awal (*raw data preservation*).
 - Melakukan standarisasi format data.
 - Memvalidasi koordinat dan tanggal.
 - Menyesuaikan sistem koordinat geospasial (CRS).
 - Memfilter data berdasarkan wilayah dan periode penelitian.
 
 #### Phase 3 — Data Pipeline Development
+
 - Mengembangkan proses data ingestion.
 - Membuat proses extraction, transformation, dan loading.
 - Mengintegrasikan data dari berbagai sumber.
@@ -86,6 +89,7 @@ Data historis sebelum September 2026 dapat digunakan untuk membangun dan mengeva
 - Menguji konsistensi hasil pipeline.
 
 #### Phase 4 — Database Management
+
 - Merancang struktur database.
 - Mengimplementasikan PostgreSQL dan PostGIS.
 - Menentukan tipe data dan constraint tabel.
@@ -96,6 +100,7 @@ Data historis sebelum September 2026 dapat digunakan untuk membangun dan mengeva
 - Menyediakan dataset yang siap digunakan Data Analyst.
 
 #### Phase 5 — Documentation & Data Delivery
+
 - Membuat data dictionary.
 - Mendokumentasikan sumber dan alur data.
 - Menyediakan dataset hasil pemrosesan.
@@ -107,6 +112,7 @@ Data historis sebelum September 2026 dapat digunakan untuk membangun dan mengeva
 **Primary Responsibility:** Exploratory analysis, spatial-temporal analysis, clustering, predictive modeling, and visualization.
 
 #### Phase 1 — Exploratory Data Analysis
+
 - Memahami struktur dan karakteristik dataset.
 - Menganalisis distribusi hotspot.
 - Menganalisis jumlah hotspot berdasarkan provinsi.
@@ -114,6 +120,7 @@ Data historis sebelum September 2026 dapat digunakan untuk membangun dan mengeva
 - Mengeksplorasi hubungan hotspot dengan kondisi lingkungan.
 
 #### Phase 2 — Spatial Analysis
+
 - Memetakan distribusi hotspot.
 - Mengidentifikasi wilayah dengan konsentrasi hotspot tinggi.
 - Melakukan overlay hotspot dengan wilayah gambut.
@@ -121,6 +128,7 @@ Data historis sebelum September 2026 dapat digunakan untuk membangun dan mengeva
 - Membuat visualisasi geospasial.
 
 #### Phase 3 — Spatial-Temporal Clustering
+
 - Menentukan variabel clustering.
 - Melakukan preprocessing.
 - Mengevaluasi penggunaan DBSCAN.
@@ -129,6 +137,7 @@ Data historis sebelum September 2026 dapat digunakan untuk membangun dan mengeva
 - Menginterpretasikan hasil clustering.
 
 #### Phase 4 — Fire Severity Analysis & Prediction
+
 - Memeriksa ketersediaan data untuk menentukan target severity.
 - Menentukan fitur prediksi.
 - Melakukan feature engineering.
@@ -137,6 +146,7 @@ Data historis sebelum September 2026 dapat digunakan untuk membangun dan mengeva
 - Menginterpretasikan hasil model.
 
 #### Phase 5 — Visualization & Reporting
+
 - Membuat peta distribusi hotspot.
 - Memvisualisasikan hasil clustering.
 - Membuat grafik temporal.
@@ -156,21 +166,24 @@ Data historis sebelum September 2026 dapat digunakan untuk membangun dan mengeva
 
 ## 4. Data Sources
 
-Sumber data berikut merupakan kandidat yang akan dievaluasi berdasarkan ketersediaan, kualitas, lisensi, dan kesesuaian periode penelitian.
+Sumber data dipilih berdasarkan ketersediaan, kualitas, lisensi, resolusi spasial, dan kesesuaian periode penelitian.
 
-| Dataset | Candidate Source | Purpose |
-|---|---|---|
-| Fire Hotspots | NASA FIRMS | Identifikasi titik panas |
-| Administrative Boundaries | BIG / GADM | Batas wilayah administratif |
-| Peatland Distribution | KLHK / BRGM / BIG | Identifikasi wilayah gambut |
-| Rainfall | CHIRPS | Analisis curah hujan |
-| Weather Variables | ERA5 / ERA5-Land | Data cuaca |
-| Satellite Imagery | Sentinel-2 | Analisis area terbakar dan severity |
-| Land Cover | ESA WorldCover | Informasi tutupan lahan |
+### Data Sources and Current Status
+
+| Dataset | Source | Purpose | Status |
+|---|---|---|---|
+| Fire Hotspots | NASA FIRMS | Identifikasi titik panas | Processed |
+| Administrative Boundaries | BIG | Batas wilayah administratif | Processed |
+| Peatland Distribution | BNPB InAWARE / Global Forest Watch | Identifikasi area gambut | Processed |
+| Rainfall | CHIRPS | Analisis curah hujan | Planned |
+| Weather Variables | ERA5 / ERA5-Land | Data cuaca | Planned |
+| Satellite Imagery | Sentinel-2 | Analisis area terbakar dan severity | Planned |
+| Land Cover | ESA WorldCover | Informasi tutupan lahan | Planned |
 
 ### Data Source Links
 
 - NASA FIRMS: https://firms.modaps.eosdis.nasa.gov/
+- BNPB GIS: https://gis.bnpb.go.id/
 - Google Earth Engine: https://earthengine.google.com/
 - Copernicus Data Space: https://dataspace.copernicus.eu/
 - CHIRPS: https://www.chc.ucsb.edu/data/chirps
@@ -179,11 +192,124 @@ Sumber data berikut merupakan kandidat yang akan dievaluasi berdasarkan ketersed
 - GADM: https://gadm.org/
 - ESA WorldCover: https://worldcover2021.esa.int/
 
-**Note:** Tidak semua sumber data harus digunakan. Pemilihan akhir akan mengikuti hasil eksplorasi dan validasi ketersediaan dataset.
+### Data Source Notes
+
+**NASA FIRMS**
+
+Menggunakan data VIIRS Suomi-NPP dengan produk near real-time (NRT). Dataset mentah mencakup periode September–Oktober 2026, kemudian difilter untuk mendapatkan data periode utama penelitian, yaitu September 2026.
+
+**Administrative Boundaries**
+
+Menggunakan data batas administrasi dari BIG sebagai acuan wilayah penelitian untuk lima provinsi di Kalimantan.
+
+**Peatland Distribution**
+
+Menggunakan layer `Indonesia_peat_lands` dari BNPB InAWARE / Global Forest Watch. Dataset ini digunakan sebagai alternatif karena akses terhadap layanan peta gambut Kementerian Pertanian yang ditelusuri sebelumnya memerlukan autentikasi.
+
+Data gambut yang digunakan merupakan hasil pengambilan berdasarkan bounding box Kalimantan dan belum merupakan hasil clipping terhadap batas provinsi. Informasi atribut dan tahun pembaruan sumber perlu diperhatikan ketika melakukan interpretasi.
+
+**Important:** Tidak semua sumber data harus digunakan. Pemilihan akhir akan mengikuti hasil eksplorasi dan validasi ketersediaan dataset.
 
 ---
 
-## 5. Technology Stack
+## 5. Current Data Engineering Progress
+
+Bagian ini mendokumentasikan dataset yang sudah berhasil dikumpulkan, diproses, dan divalidasi.
+
+### A. Administrative Boundaries
+
+| Attribute | Result |
+|---|---|
+| Source | BIG |
+| Geographic Coverage | Five Kalimantan Provinces |
+| Number of Provinces | 5 |
+| CRS | EPSG:4326 |
+| Geometry Type | Polygon |
+| Output | `kalimantan_provinces.geojson` |
+| Status | Processed and validated |
+
+Provinsi yang tercakup:
+
+- Kalimantan Barat
+- Kalimantan Tengah
+- Kalimantan Selatan
+- Kalimantan Timur
+- Kalimantan Utara
+
+### B. NASA FIRMS Hotspots
+
+| Attribute | Result |
+|---|---|
+| Source | NASA FIRMS |
+| Satellite | Suomi-NPP |
+| Instrument | VIIRS |
+| Product Version | 2.0NRT |
+| Raw Records | 210,915 |
+| Raw Date Range | September 1 – October 31, 2026 |
+| September Records | 115,739 |
+| Records Within Study Provinces | 115,137 |
+| Unmatched Records | 602 |
+| CRS | EPSG:4326 |
+| Status | Processed and validated |
+
+Processed outputs:
+
+- `hotspots_kalimantan_september_2026.csv`
+- `hotspots_kalimantan_september_2026.geojson`
+- `hotspots_outside_study_area_september_2026.csv`
+
+The 602 unmatched records are retained separately for further inspection. They are not automatically classified as detections outside Indonesia.
+
+### C. Peatland Dataset
+
+| Attribute | Result |
+|---|---|
+| Source | BNPB InAWARE / Global Forest Watch |
+| Layer | `Indonesia_peat_lands` |
+| Raw Features | 350 |
+| Geometry Types | Polygon and MultiPolygon |
+| CRS | EPSG:4326 |
+| Valid Geometries | 350 |
+| Unique Features | 350 |
+| Normalized Category | 348 gambut, 2 unknown |
+| Province Relationships | 353 |
+| Status | Processed and validated |
+
+Processed outputs:
+
+- `peatland_kalimantan_clean.geojson`
+- `peatland_province_relationship.csv`
+
+Additional processing:
+
+- Geometry validation.
+- Attribute profiling.
+- Category normalization.
+- Spatial intersection with five administrative provinces.
+- Province relationship table generation.
+- Output read-back validation.
+
+**Important methodological note:**
+
+The peatland polygons were not clipped to provincial boundaries. The province relationship table records spatial intersections between peatland features and administrative boundaries. Three peatland features intersect more than one province, resulting in 353 relationships from 350 unique features.
+
+Two features with blank source categories were normalized to `unknown`. Their peatland classification is not assumed.
+
+### Data Engineering Summary
+
+| Dataset | Raw Data | Processed Data | Validation |
+|---|---|---|---|
+| Administrative Boundaries | Available | Available | Passed |
+| NASA FIRMS | Available | Available | Passed |
+| Peatland | Available | Available | Passed |
+| Rainfall | Pending | Pending | Pending |
+| Weather | Pending | Pending | Pending |
+| Satellite Imagery | Pending | Pending | Pending |
+| Land Cover | Pending | Pending | Pending |
+
+---
+
+## 6. Technology Stack
 
 Technology stack disusun berdasarkan kebutuhan proyek. Tools yang bersifat opsional hanya akan digunakan apabila memang diperlukan.
 
@@ -191,11 +317,13 @@ Technology stack disusun berdasarkan kebutuhan proyek. Tools yang bersifat opsio
 
 | Technology | Purpose | Status |
 |---|---|---|
-| Python | Main programming language | Planned |
-| Pandas | Data manipulation | Planned |
-| NumPy | Numerical processing | Planned |
-| GeoPandas | Geospatial processing | Planned |
-| Shapely | Geometry operations | Planned |
+| Python | Main programming language | Used |
+| Pandas | Data manipulation | Used |
+| NumPy | Numerical processing | Used |
+| GeoPandas | Geospatial processing | Used |
+| Shapely | Geometry operations | Used |
+| Pyogrio / Fiona | Geospatial file I/O | As needed |
+| Requests | API data acquisition | Used |
 | Rasterio | Raster processing | As needed |
 | SQL | Database queries | Planned |
 | PostgreSQL | Relational database | Selected |
@@ -232,7 +360,7 @@ Technology stack disusun berdasarkan kebutuhan proyek. Tools yang bersifat opsio
 
 ---
 
-## 6. System Architecture
+## 7. System Architecture
 
 The project follows an end-to-end data workflow consisting of data acquisition, processing, storage, analytics, and visualization.
 
@@ -288,23 +416,11 @@ flowchart TD
     H --> I
 ```
 
-### Architecture Explanation
-
-1. **Data Sources:** Mengambil data dari sumber eksternal.
-2. **Data Ingestion:** Mengumpulkan data melalui API, download, atau metode lain.
-3. **Raw Data Storage:** Menyimpan salinan data sumber sebelum transformasi.
-4. **Data Processing:** Melakukan cleaning, validasi, standardisasi, dan integrasi.
-5. **Database:** Menyimpan data terstruktur menggunakan PostgreSQL dan PostGIS.
-6. **Analytical Dataset:** Menyediakan data yang sudah diproses untuk analisis.
-7. **Data Analytics:** Melakukan EDA, analisis spasial-temporal, clustering, dan pemodelan.
-8. **Data Delivery:** Menyediakan hasil analisis untuk dashboard.
-9. **Visualization:** Menampilkan hasil menggunakan Google Looker Studio.
-
-*Architecture ini merupakan rancangan awal dan dapat berubah mengikuti implementasi.*
+**Architecture Status:** Proposed architecture. The ingestion, raw storage, and initial processing stages have been implemented for administrative boundaries, FIRMS hotspots, and peatland data. PostgreSQL/PostGIS, analytical data delivery, and dashboard integration remain planned.
 
 ---
 
-## 7. Proposed Database Design
+## 8. Proposed Database Design
 
 Database direncanakan menggunakan PostgreSQL dan PostGIS untuk mendukung penyimpanan data tabular dan geospasial.
 
@@ -327,7 +443,7 @@ Struktur tabel akan ditentukan setelah proses data profiling dan analisis kebutu
 
 ---
 
-## 8. Proposed Analytical Methods
+## 9. Proposed Analytical Methods
 
 Metode analisis akan disesuaikan dengan karakteristik dan ketersediaan data.
 
@@ -345,33 +461,39 @@ Metode analisis akan disesuaikan dengan karakteristik dan ketersediaan data.
 
 ---
 
-## 9. Important Methodological Considerations
+## 10. Important Methodological Considerations
 
 ### 1. Hotspot is not the same as fire severity
 
 Data hotspot NASA FIRMS merupakan deteksi anomali termal, bukan pengukuran langsung tingkat keparahan kebakaran.
 
-Diperlukan data tambahan seperti Sentinel-2 untuk memperoleh informasi area terbakar dan membentuk label severity yang dapat dipertanggungjawabkan.
+Diperlukan data tambahan seperti Sentinel-2 untuk memperoleh informasi perubahan vegetasi atau area terbakar dan membentuk label severity yang dapat dipertanggungjawabkan.
 
-### 2. Temporal clustering
+### 2. Peatland data limitations
+
+Dataset gambut yang digunakan merupakan alternatif dari layer BNPB InAWARE / Global Forest Watch. Dataset ini tidak boleh langsung dianggap setara dengan peta gambut skala 1:50.000 dari Kementerian Pertanian.
+
+Tahun pembaruan, definisi atribut, dan ketelitian spasial sumber perlu dipertimbangkan dalam interpretasi hasil.
+
+### 3. Temporal clustering
 
 Clustering perlu mempertimbangkan koordinat dan waktu kejadian. Pemilihan metode jarak dan parameter harus disesuaikan dengan karakteristik data.
 
-### 3. Severity prediction
+### 4. Severity prediction
 
 Model klasifikasi severity hanya dikembangkan apabila target label tersedia, valid, dan memiliki dasar metodologi yang jelas.
 
-### 4. Model validation
+### 5. Model validation
 
 Pembagian data perlu mempertimbangkan urutan waktu untuk mengurangi risiko data leakage.
 
-### 5. Data availability
+### 6. Data availability
 
 Ketersediaan data, resolusi spasial, temporal coverage, dan kualitas sumber akan memengaruhi metode analisis yang dapat diterapkan.
 
 ---
 
-## 10. Repository Structure
+## 11. Repository Structure
 
 ```text
 karhutla-spatial-temporal-analysis/
@@ -384,8 +506,17 @@ karhutla-spatial-temporal-analysis/
 ├── data/
 │   ├── README.md
 │   ├── raw/
+│   │   ├── boundaries/
+│   │   ├── firms/
+│   │   └── peatland/
+│   │
 │   ├── staging/
+│   │
 │   ├── processed/
+│   │   ├── boundaries/
+│   │   ├── firms/
+│   │   └── peatland/
+│   │
 │   └── final/
 │
 ├── data_engineering/
@@ -410,10 +541,6 @@ karhutla-spatial-temporal-analysis/
 │
 ├── dashboard/
 │   ├── README.md
-│   ├── looker_studio/
-│   │   ├── README.md
-│   │   ├── screenshots/
-│   │   └── dashboard_links.md
 │   └── exports/
 │
 ├── docs/
@@ -422,15 +549,12 @@ karhutla-spatial-temporal-analysis/
 │   ├── methodology/
 │   └── reports/
 │
-├── tests/
-│
-└── .github/
-    └── ISSUE_TEMPLATE/
+└── tests/
 ```
 
 ---
 
-## 11. Project Milestones
+## 12. Project Milestones
 
 Estimated development timeline: 6–8 weeks.
 
@@ -449,18 +573,23 @@ Estimated development timeline: 6–8 weeks.
 
 ---
 
-## 12. Definition of Done
+## 13. Definition of Done
 
 ### Data Engineering
-- [ ] Data sources telah diidentifikasi dan didokumentasikan.
-- [ ] Dataset utama berhasil dikumpulkan.
-- [ ] Data telah melalui proses cleaning dan validasi.
+
+- [x] Data sources telah diidentifikasi dan didokumentasikan.
+- [x] Dataset batas administrasi berhasil dikumpulkan.
+- [x] Dataset FIRMS berhasil dikumpulkan dan diproses.
+- [x] Dataset gambut berhasil dikumpulkan dan diproses.
+- [x] Dataset awal telah melalui profiling dan validasi.
+- [ ] Seluruh dataset pendukung berhasil dikumpulkan.
 - [ ] Database berhasil diimplementasikan.
 - [ ] Analytical dataset tersedia.
-- [ ] Pipeline dapat dijalankan dan diuji.
-- [ ] Dokumentasi teknis tersedia.
+- [ ] Pipeline dapat dijalankan dan diuji secara menyeluruh.
+- [ ] Dokumentasi teknis lengkap.
 
 ### Data Analytics
+
 - [ ] EDA selesai.
 - [ ] Spatial analysis selesai.
 - [ ] Temporal analysis selesai.
@@ -471,6 +600,7 @@ Estimated development timeline: 6–8 weeks.
 - [ ] Laporan hasil analisis tersedia.
 
 ### Final Integration
+
 - [ ] Data Engineering dan Data Analytics terintegrasi.
 - [ ] Kode dan dokumentasi tersedia di GitHub.
 - [ ] Hasil proyek dapat direproduksi.
@@ -478,7 +608,7 @@ Estimated development timeline: 6–8 weeks.
 
 ---
 
-## 13. Expected Final Deliverables
+## 14. Expected Final Deliverables
 
 1. Data Collection and Processing Pipeline.
 2. PostgreSQL + PostGIS Geospatial Database.
@@ -491,7 +621,7 @@ Estimated development timeline: 6–8 weeks.
 
 ---
 
-## 14. Team
+## 15. Team
 
 | Name | Role | Main Responsibility |
 |---|---|---|

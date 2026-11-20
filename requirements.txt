@@ -1,1 +1,10 @@
+pandas
 geopandas
+shapely
+pyogrio
+fiona
+requests
+matplotlib
+jupyter
+ipykernel
+numpy

@@ -2,43 +2,47 @@
 # Python cache
 __pycache__/
 *.py[cod]
+*$py.class
 
 # Virtual environment
 venv/
 .venv/
 env/
 
+# Jupyter Notebook
+.ipynb_checkpoints/
+
 # Environment variables and secrets
 .env
 .env.*
 !.env.example
 
-# Jupyter Notebook cache
-.ipynb_checkpoints/
-
-# IDE settings
+# IDE and editor
 .vscode/
 .idea/
 
 # Operating system
 .DS_Store
 Thumbs.db
+desktop.ini
+
+# Logs
+*.log
 
 # Temporary files
-*.log
-temp/
-tmp/
-.cache/
+*.tmp
+*.bak
 
-# Local data files
-data/raw/*
-!data/raw/.gitkeep
+# Local database files
+*.db
+*.sqlite
+*.sqlite3
 
-data/staging/*
-!data/staging/.gitkeep
+# Generated exports
+*.tmp.geojson
+*.tmp.csv
 
-data/processed/*
-!data/processed/.gitkeep
-
-data/final/*
-!data/final/.gitkeep
+# Python test cache
+.pytest_cache/
+.coverage
+htmlcov/
