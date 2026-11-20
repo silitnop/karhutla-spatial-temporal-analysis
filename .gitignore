@@ -3,21 +3,26 @@
 # DATASETS
 # ==========================================
 
-# Raw datasets - original source files
+# Raw datasets - tidak di-upload
 data/raw/*
 !data/raw/.gitkeep
 
-# Processed datasets - hasil preprocessing
-data/processed/*
-!data/processed/.gitkeep
+# Processed datasets - di-upload ke GitHub
+# Final datasets - di-upload ke GitHub
 
-# Final datasets
-data/final/*
-!data/final/.gitkeep
-
-# Staging datasets
+# Staging - tidak di-upload
 data/staging/*
 !data/staging/.gitkeep
+
+# ==========================================
+# DATABASE
+# ==========================================
+
+database/staging/*
+!database/staging/.gitkeep
+
+database/analytical_mart/*
+!database/analytical_mart/.gitkeep
 
 # ==========================================
 # DATABASE
