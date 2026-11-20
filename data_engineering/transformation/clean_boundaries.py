@@ -19,7 +19,7 @@ gdf["wadmpr"] = (
 provinces = gdf.dissolve(by="wadmpr")
 
 # Reset index agar nama provinsi menjadi kolom
-provinces = provinces.reset_index()
+provinces = provinces[["geometry"]].reset_index()
 
 # Validasi hasil
 print("Jumlah provinsi:", len(provinces))
