@@ -1,50 +1,41 @@
-
 # ==========================================
 # DATASETS
 # ==========================================
 
-# Raw datasets - tidak di-upload
+# Raw datasets - not uploaded to GitHub
 data/raw/*
 !data/raw/.gitkeep
 
-# Processed datasets - di-upload ke GitHub
-# Final datasets - di-upload ke GitHub
-
-# Staging - tidak di-upload
+# Staging datasets - not uploaded to GitHub
 data/staging/*
 !data/staging/.gitkeep
 
-# ==========================================
-# DATABASE
-# ==========================================
-
-database/staging/*
-!database/staging/.gitkeep
-
-database/analytical_mart/*
-!database/analytical_mart/.gitkeep
+# Processed datasets - tracked by Git
+# Final datasets - tracked by Git
+# Add specific ignore rules if datasets become too large.
 
 # ==========================================
 # DATABASE
 # ==========================================
 
+# Local database staging files
 database/staging/*
 !database/staging/.gitkeep
 
+# Generated analytical outputs
 database/analytical_mart/*
 !database/analytical_mart/.gitkeep
 
-# Ignore local database files
+# Database backups - do not upload to GitHub
+database/backup/*
+!database/backup/.gitkeep
+
+# Local database files
 *.db
 *.sqlite
 *.sqlite3
-
-# ==========================================
-# NOTEBOOKS
-# ==========================================
-
-.ipynb_checkpoints/
-*.ipynb_checkpoints
+*.backup
+*.dump
 
 # ==========================================
 # PYTHON
@@ -56,9 +47,18 @@ __pycache__/
 *.egg-info/
 dist/
 build/
+
+# Virtual environments
 venv/
 .venv/
 env/
+
+# ==========================================
+# NOTEBOOKS
+# ==========================================
+
+.ipynb_checkpoints/
+*.ipynb_checkpoints
 
 # ==========================================
 # ENVIRONMENT & SECRETS

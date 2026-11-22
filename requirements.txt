@@ -1,10 +1,28 @@
+# Data Manipulation
 pandas
+numpy
+
+# Geospatial Processing
 geopandas
 shapely
 pyogrio
 fiona
+
+# Data Acquisition
 requests
+
+# Raster Processing
+rasterio
+
+# Data Visualization
 matplotlib
+
+# Notebook Environment
 jupyter
 ipykernel
-numpy
+
+# Database Connectivity
+psycopg2-binary
+
+# Database Utilities
+sqlalchemy
