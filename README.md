@@ -210,11 +210,9 @@ Data gambut yang digunakan merupakan hasil pengambilan berdasarkan bounding box 
 
 **Important:** Tidak semua sumber data harus digunakan. Pemilihan akhir akan mengikuti hasil eksplorasi dan validasi ketersediaan dataset.
 
----
-
 ## 5. Current Data Engineering Progress
 
-Bagian ini mendokumentasikan dataset yang sudah berhasil dikumpulkan, diproses, dan divalidasi.
+Bagian ini mendokumentasikan dataset yang telah dikumpulkan, diproses, dimuat ke database, dan divalidasi.
 
 ### A. Administrative Boundaries
 
@@ -224,17 +222,9 @@ Bagian ini mendokumentasikan dataset yang sudah berhasil dikumpulkan, diproses, 
 | Geographic Coverage | Five Kalimantan Provinces |
 | Number of Provinces | 5 |
 | CRS | EPSG:4326 |
-| Geometry Type | Polygon |
-| Output | `kalimantan_provinces.geojson` |
-| Status | Processed and validated |
-
-Provinsi yang tercakup:
-
-- Kalimantan Barat
-- Kalimantan Tengah
-- Kalimantan Selatan
-- Kalimantan Timur
-- Kalimantan Utara
+| Geometry Type | MultiPolygon |
+| Database Table | `karhutla.dim_provinces` |
+| Status | Loaded and validated |
 
 ### B. NASA FIRMS Hotspots
 
@@ -247,16 +237,11 @@ Provinsi yang tercakup:
 | Raw Records | 210,915 |
 | Raw Date Range | September 1 – October 31, 2026 |
 | September Records | 115,739 |
-| Records Within Study Provinces | 115,137 |
+| Records Within Study Area | 115,137 |
 | Unmatched Records | 602 |
 | CRS | EPSG:4326 |
-| Status | Processed and validated |
-
-Processed outputs:
-
-- `hotspots_kalimantan_september_2026.csv`
-- `hotspots_kalimantan_september_2026.geojson`
-- `hotspots_outside_study_area_september_2026.csv`
+| Database Table | `karhutla.fact_hotspots` |
+| Status | Loaded and validated |
 
 The 602 unmatched records are retained separately for further inspection. They are not automatically classified as detections outside Indonesia.
 
@@ -273,41 +258,97 @@ The 602 unmatched records are retained separately for further inspection. They a
 | Unique Features | 350 |
 | Normalized Category | 348 gambut, 2 unknown |
 | Province Relationships | 353 |
-| Status | Processed and validated |
-
-Processed outputs:
-
-- `peatland_kalimantan_clean.geojson`
-- `peatland_province_relationship.csv`
-
-Additional processing:
-
-- Geometry validation.
-- Attribute profiling.
-- Category normalization.
-- Spatial intersection with five administrative provinces.
-- Province relationship table generation.
-- Output read-back validation.
-
-**Important methodological note:**
+| Database Table | `karhutla.dim_peatlands` |
+| Status | Loaded and validated |
 
 The peatland polygons were not clipped to provincial boundaries. The province relationship table records spatial intersections between peatland features and administrative boundaries. Three peatland features intersect more than one province, resulting in 353 relationships from 350 unique features.
 
-Two features with blank source categories were normalized to `unknown`. Their peatland classification is not assumed.
+### D. CHIRPS Rainfall Data
+
+| Attribute | Result |
+|---|---|
+| Source | CHIRPS |
+| Data Type | Daily Raster |
+| Period | September 1–30, 2026 |
+| Number of Raster Files | 30 |
+| CRS | EPSG:4326 |
+| Raster Dimensions | 210 × 188 pixels |
+| Number of Bands | 1 |
+| Spatial Resolution | 0.05° × 0.05° |
+| NoData Value | -9999 |
+| Storage | GeoTIFF files |
+| Database Table | `karhutla.chirps_raster_metadata` |
+| Status | Metadata loaded and validated |
+
+The raster files remain stored as GeoTIFF files on disk. PostgreSQL stores their metadata and file references rather than individual raster pixels.
+
+### E. Sentinel-2 Data
+
+| Attribute | Result |
+|---|---|
+| Source | Copernicus Data Space |
+| Satellite | Sentinel-2 |
+| Instrument | MSI |
+| Processing Level | L2A |
+| Period | September 1–30, 2026 |
+| Product Footprints | 214 |
+| Geometry Type | Polygon |
+| CRS | EPSG:4326 |
+| Average Product Cloud Cover | 16.67% |
+| Database Table | `karhutla.sentinel2_products` |
+| Status | Metadata and footprints loaded and validated |
+
+The current implementation stores Sentinel-2 product metadata and spatial footprints. The actual satellite imagery has not yet been downloaded or processed for burned-area and severity analysis.
+
+### F. Database Implementation
+
+| Attribute | Result |
+|---|---|
+| Database | `karhutla_db` |
+| DBMS | PostgreSQL 18.6 |
+| Spatial Extension | PostGIS 3.7.0 |
+| Schema | `karhutla` |
+| Number of Tables | 5 |
+| Total Records | 115,736 |
+| Spatial Reference System | EPSG:4326 |
+| Spatial Index | GiST |
+| Backup Format | PostgreSQL Custom Format |
+| Status | Implemented and validated |
+
+Database tables:
+
+| Table | Records |
+|---|---:|
+| `dim_provinces` | 5 |
+| `dim_peatlands` | 350 |
+| `fact_hotspots` | 115,137 |
+| `sentinel2_products` | 214 |
+| `chirps_raster_metadata` | 30 |
+| **Total** | **115,736** |
+
+### G. Database Validation
+
+- All 115,137 hotspot records have valid province references.
+- No invalid province references were found.
+- All 115,706 spatial features have valid geometries.
+- All geometry tables use EPSG:4326.
+- GiST spatial indexes have been created for all four spatial tables.
+- Database backup has been created and its archive contents inspected.
+- Actual database restoration test is still pending.
 
 ### Data Engineering Summary
 
-| Dataset | Raw Data | Processed Data | Validation |
+| Dataset | Processing | Database Loading | Validation |
 |---|---|---|---|
-| Administrative Boundaries | Available | Available | Passed |
-| NASA FIRMS | Available | Available | Passed |
-| Peatland | Available | Available | Passed |
-| Rainfall | Pending | Pending | Pending |
-| Weather | Pending | Pending | Pending |
-| Satellite Imagery | Pending | Pending | Pending |
+| Administrative Boundaries | Completed | Completed | Passed |
+| NASA FIRMS | Completed | Completed | Passed |
+| Peatland | Completed | Completed | Passed |
+| CHIRPS | Completed | Completed | Passed |
+| Sentinel-2 Metadata | Completed | Completed | Passed |
+| ERA5 / Weather | Pending | Pending | Pending |
 | Land Cover | Pending | Pending | Pending |
 
----
+**Current Status:** Initial data acquisition, processing, database implementation, loading, and validation have been completed for the five datasets listed above.
 
 ## 6. Technology Stack
 
@@ -415,31 +456,62 @@ flowchart TD
     G --> H
     H --> I
 ```
+**Architecture Status:** The initial data engineering architecture has been implemented for administrative boundaries, FIRMS hotspots, peatland data, CHIRPS raster metadata, and Sentinel-2 product metadata and footprints.
 
-**Architecture Status:** Proposed architecture. The ingestion, raw storage, and initial processing stages have been implemented for administrative boundaries, FIRMS hotspots, and peatland data. PostgreSQL/PostGIS, analytical data delivery, and dashboard integration remain planned.
+The PostgreSQL/PostGIS database has been created and populated with five tables. Initial data validation, spatial integrity checks, indexing, and database backup have also been completed.
+
+The following stages remain in progress:
+- Database restoration testing.
+- Analytical dataset preparation and delivery.
+- End-to-end pipeline orchestration and testing.
+- Data Analyst integration.
+- Dashboard development and final visualization.
 
 ---
 
-## 8. Proposed Database Design
+## 8. Database Design and Implementation
 
-Database direncanakan menggunakan PostgreSQL dan PostGIS untuk mendukung penyimpanan data tabular dan geospasial.
+The project uses PostgreSQL 18.6 with PostGIS 3.7.0 to store and manage tabular and geospatial datasets.
 
-Struktur tabel akan ditentukan setelah proses data profiling dan analisis kebutuhan data.
+The database is named `karhutla_db`, with the primary project schema named `karhutla`.
 
-### Initial Data Categories
+### Implemented Database Tables
 
-| Data Category | Description |
+| Table | Description |
 |---|---|
-| Hotspot | Informasi deteksi titik panas |
-| Weather | Informasi kondisi cuaca |
-| Peatland | Informasi area ekosistem gambut |
-| Administrative | Informasi wilayah administratif |
-| Land Cover | Informasi tutupan lahan |
-| Burned Area | Informasi area terbakar dan severity jika tersedia |
+| `karhutla.dim_provinces` | Administrative boundaries of five Kalimantan provinces |
+| `karhutla.dim_peatlands` | Peatland polygon features and source attributes |
+| `karhutla.fact_hotspots` | NASA FIRMS hotspot detections |
+| `karhutla.sentinel2_products` | Sentinel-2 product metadata and spatial footprints |
+| `karhutla.chirps_raster_metadata` | Metadata and file references for daily CHIRPS raster datasets |
 
-### Proposed Data Flow
+### Database Implementation
 
-`Raw Data → Staging → Data Cleaning → Data Integration → PostgreSQL/PostGIS → Analytical Dataset`
+- Primary keys and unique constraints.
+- Foreign key relationship between hotspot records and provinces.
+- Geometry columns using EPSG:4326.
+- GiST spatial indexes for spatial tables.
+- B-tree indexes for frequently queried attributes.
+- Check constraints for applicable fields.
+- Database backup using PostgreSQL custom format.
+
+### Data Storage Strategy
+
+Vector datasets are stored in PostGIS geometry columns.
+
+CHIRPS raster files remain stored as GeoTIFF files on disk, while their metadata and file references are maintained in PostgreSQL.
+
+Sentinel-2 imagery is not yet stored in the database. The current database contains product metadata and spatial footprints.
+
+### Next Steps
+
+- Perform database restoration testing.
+- Prepare analytical datasets for downstream analysis.
+- Develop repeatable data pipelines.
+- Document database relationships and data dictionary.
+- Deliver validated data to the Data Analyst.
+
+**Database Status:** Implemented, populated, and initially validated.
 
 ---
 
@@ -495,6 +567,8 @@ Ketersediaan data, resolusi spasial, temporal coverage, dan kualitas sumber akan
 
 ## 11. Repository Structure
 
+The repository is organized into dedicated directories for data storage, data engineering, data analytics, database management, documentation, and dashboard development.
+
 ```text
 karhutla-spatial-temporal-analysis/
 │
@@ -503,27 +577,45 @@ karhutla-spatial-temporal-analysis/
 ├── .gitignore
 ├── LICENSE
 │
+├── dashboard/
+│   └── exports/
+│
 ├── data/
-│   ├── README.md
 │   ├── raw/
 │   │   ├── boundaries/
+│   │   ├── chirps/
 │   │   ├── firms/
-│   │   └── peatland/
+│   │   ├── peatland/
+│   │   └── sentinel2/
 │   │
 │   ├── staging/
+│   │   └── sentinel2/
 │   │
 │   ├── processed/
 │   │   ├── boundaries/
+│   │   ├── chirps/
+│   │   │   └── daily/
 │   │   ├── firms/
 │   │   └── peatland/
 │   │
 │   └── final/
+│
+├── database/
+│   ├── backup/
+│   ├── schema/
+│   ├── staging/
+│   └── analytical_mart/
 │
 ├── data_engineering/
 │   ├── ingestion/
 │   ├── transformation/
 │   ├── validation/
 │   ├── pipelines/
+│   │
+│   ├── database/
+│   │   ├── scripts/
+│   │   └── sql/
+│   │
 │   └── sql/
 │
 ├── data_analytics/
@@ -532,16 +624,6 @@ karhutla-spatial-temporal-analysis/
 │   ├── modeling/
 │   ├── evaluation/
 │   └── visualization/
-│
-├── database/
-│   ├── schema/
-│   ├── staging/
-│   ├── analytical_mart/
-│   └── README.md
-│
-├── dashboard/
-│   ├── README.md
-│   └── exports/
 │
 ├── docs/
 │   ├── architecture/
@@ -552,6 +634,36 @@ karhutla-spatial-temporal-analysis/
 └── tests/
 ```
 
+### Directory Description
+
+| Directory | Description |
+|---|---|
+| `data/raw/` | Original datasets collected from external sources, preserved in their original form. |
+| `data/staging/` | Intermediate datasets prepared for processing and integration. |
+| `data/processed/` | Cleaned, transformed, and validated datasets. |
+| `data/final/` | Final datasets prepared for analytical consumption and delivery. |
+| `database/backup/` | Database backup files. |
+| `database/schema/` | Database schema definitions and SQL scripts. |
+| `database/staging/` | Database staging objects and intermediate data. |
+| `database/analytical_mart/` | Analytical tables and datasets prepared for downstream analysis. |
+| `data_engineering/ingestion/` | Scripts for acquiring data from external sources. |
+| `data_engineering/transformation/` | Scripts and notebooks for data cleaning and transformation. |
+| `data_engineering/validation/` | Data quality checks and validation procedures. |
+| `data_engineering/pipelines/` | Data pipeline implementation and workflow orchestration. |
+| `data_engineering/database/scripts/` | Python scripts for loading datasets into PostgreSQL/PostGIS. |
+| `data_engineering/database/sql/` | SQL scripts used for database implementation and management. |
+| `data_engineering/sql/` | Additional SQL queries and data processing scripts. |
+| `data_analytics/notebooks/` | Notebooks for exploratory data analysis and experimentation. |
+| `data_analytics/clustering/` | Spatial and temporal clustering implementation. |
+| `data_analytics/modeling/` | Machine learning model development. |
+| `data_analytics/evaluation/` | Model evaluation and performance assessment. |
+| `data_analytics/visualization/` | Analytical charts, maps, and visualization outputs. |
+| `dashboard/` | Dashboard development resources and exported outputs. |
+| `docs/architecture/` | System architecture and workflow documentation. |
+| `docs/data_dictionary/` | Dataset descriptions, column definitions, and data specifications. |
+| `docs/methodology/` | Research methodology and analytical procedures. |
+| `docs/reports/` | Project progress reports and technical documentation. |
+| `tests/` | Tests for data processing, validation, and pipeline components. |
 ---
 
 ## 12. Project Milestones
@@ -578,15 +690,44 @@ Estimated development timeline: 6–8 weeks.
 ### Data Engineering
 
 - [x] Data sources telah diidentifikasi dan didokumentasikan.
-- [x] Dataset batas administrasi berhasil dikumpulkan.
+- [x] Dataset batas administrasi berhasil dikumpulkan dan diproses.
 - [x] Dataset FIRMS berhasil dikumpulkan dan diproses.
 - [x] Dataset gambut berhasil dikumpulkan dan diproses.
+- [x] Dataset CHIRPS berhasil dikumpulkan dan diproses.
+- [x] Metadata dan footprint Sentinel-2 berhasil dikumpulkan dan diproses.
 - [x] Dataset awal telah melalui profiling dan validasi.
-- [ ] Seluruh dataset pendukung berhasil dikumpulkan.
-- [ ] Database berhasil diimplementasikan.
-- [ ] Analytical dataset tersedia.
-- [ ] Pipeline dapat dijalankan dan diuji secara menyeluruh.
-- [ ] Dokumentasi teknis lengkap.
+- [x] Database PostgreSQL berhasil diimplementasikan.
+- [x] PostGIS berhasil diaktifkan dan dikonfigurasi.
+- [x] Struktur schema dan tabel database berhasil dibuat.
+- [x] Data berhasil dimuat ke dalam database.
+- [x] Relasi antar tabel dan foreign key telah divalidasi.
+- [x] Geometri spasial dan CRS telah divalidasi.
+- [x] Spatial index dan database index telah dibuat.
+- [x] Database backup berhasil dibuat.
+- [ ] Database restore test berhasil dilakukan.
+- [ ] Analytical dataset tersedia untuk Data Analyst.
+- [ ] Pipeline end-to-end dapat dijalankan dan diuji secara menyeluruh.
+- [ ] Logging dan error handling pipeline diselesaikan.
+- [ ] Dokumentasi teknis dan data dictionary lengkap.
+- [ ] Final data delivery dan handover selesai.
+
+### Data Analytics
+
+- [ ] EDA selesai.
+- [ ] Spatial analysis selesai.
+- [ ] Temporal analysis selesai.
+- [ ] Clustering dilakukan dan dievaluasi.
+- [ ] Severity analysis dilakukan.
+- [ ] Model prediksi dikembangkan jika target data tersedia.
+- [ ] Dashboard selesai.
+- [ ] Laporan hasil analisis tersedia.
+
+### Final Integration
+
+- [ ] Data Engineering dan Data Analytics terintegrasi.
+- [ ] Kode dan dokumentasi tersedia di GitHub.
+- [ ] Hasil proyek dapat direproduksi.
+- [ ] Seluruh hasil telah melalui validasi.
 
 ### Data Analytics
 
