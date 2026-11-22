@@ -8,17 +8,10 @@ import psycopg2
 from pathlib import Path
 from datetime import datetime
 from psycopg2.extras import execute_values
-
+from data_engineering.database.db_config import DB_CONFIG
 
 INPUT_DIR = "data/processed/chirps/daily"
 
-DB_CONFIG = {
-    "host": "localhost",
-    "port": 5432,
-    "database": "karhutla_db",
-    "user": "postgres",
-    "password": "Silit123"
-}
 
 
 print("CHIRPS RASTER METADATA LOADING")

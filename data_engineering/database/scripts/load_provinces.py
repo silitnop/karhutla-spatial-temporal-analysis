@@ -3,6 +3,7 @@ import geopandas as gpd
 import psycopg2
 from psycopg2.extras import execute_values
 from shapely import force_2d
+from data_engineering.database.db_config import DB_CONFIG
 
 # ==========================================
 # CONFIGURATION
@@ -13,13 +14,6 @@ INPUT_FILE = (
     "kalimantan_provinces.geojson"
 )
 
-DB_CONFIG = {
-    "host": "localhost",
-    "port": 5432,
-    "database": "karhutla_db",
-    "user": "postgres",
-    "password": "Silit123"
-}
 
 # ==========================================
 # READ DATA

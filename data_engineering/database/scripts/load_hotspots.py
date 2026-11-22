@@ -1,7 +1,7 @@
 
 import pandas as pd
 import psycopg2
-
+from data_engineering.database.db_config import DB_CONFIG
 from psycopg2.extras import execute_values
 
 
@@ -9,14 +9,6 @@ INPUT_FILE = (
     "data/processed/firms/"
     "hotspots_kalimantan_september_2026.csv"
 )
-
-DB_CONFIG = {
-    "host": "localhost",
-    "port": 5432,
-    "database": "karhutla_db",
-    "user": "postgres",
-    "password": "Silit123"
-}
 
 
 print("FIRMS HOTSPOT DATA LOADING")

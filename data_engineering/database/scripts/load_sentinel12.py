@@ -1,7 +1,7 @@
 
 import geopandas as gpd
 import psycopg2
-
+from data_engineering.database.db_config import DB_CONFIG
 from psycopg2.extras import execute_values
 from shapely import force_2d
 
@@ -10,14 +10,6 @@ INPUT_FILE = (
     "data/staging/sentinel2/"
     "sentinel2_september_2026_footprints.geojson"
 )
-
-DB_CONFIG = {
-    "host": "localhost",
-    "port": 5432,
-    "database": "karhutla_db",
-    "user": "postgres",
-    "password": "Silit123"
-}
 
 
 print("SENTINEL-2 DATA LOADING")
