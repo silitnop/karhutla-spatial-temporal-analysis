@@ -4,32 +4,32 @@
 
 ## 1. Project Overview
 
-Proyek ini bertujuan untuk menganalisis pola persebaran kebakaran hutan dan lahan (Karhutla) pada ekosistem gambut di Pulau Kalimantan menggunakan pendekatan **Spatial-Temporal Clustering** dan **Fire Severity Analysis & Prediction**.
+This project aims to analyze the spatial and temporal patterns of forest and land fires (Karhutla) across peatland ecosystems in Kalimantan, Indonesia.
 
-Penelitian berfokus pada identifikasi pola persebaran titik panas (*hotspots*), pengelompokan wilayah dengan konsentrasi aktivitas kebakaran tinggi, analisis perubahan aktivitas kebakaran berdasarkan waktu, serta eksplorasi faktor lingkungan yang berkaitan dengan kejadian kebakaran.
+The study explores hotspot distribution, spatial clustering, temporal patterns, and environmental factors associated with fire activity. It also investigates the potential for fire severity analysis and predictive modeling, subject to the availability of reliable ground-truth data.
 
-Selain itu, proyek ini akan mengeksplorasi kemungkinan pengembangan model Machine Learning untuk mengklasifikasikan tingkat keparahan kebakaran berdasarkan ketersediaan dan kualitas data pendukung.
+The project integrates geospatial, fire detection, peatland, and rainfall datasets into a spatial database to support downstream analytical workflows.
 
-**Main Analysis Period:** September 1–30, 2026.
+**Main Analysis Period:** September 1–30, 2026
 
 ### Research Area
 
-Cakupan penelitian meliputi lima provinsi di Pulau Kalimantan:
+The study covers five provinces in Kalimantan:
 
-1. Kalimantan Barat
-2. Kalimantan Tengah
-3. Kalimantan Selatan
-4. Kalimantan Timur
-5. Kalimantan Utara
+- West Kalimantan
+- Central Kalimantan
+- South Kalimantan
+- East Kalimantan
+- North Kalimantan
 
 ### Project Objectives
 
-- Mengumpulkan dan mengintegrasikan data kebakaran, geospasial, lingkungan, dan cuaca.
-- Menganalisis distribusi spasial dan temporal titik panas.
-- Mengidentifikasi kelompok wilayah dengan konsentrasi hotspot tinggi.
-- Menganalisis hubungan antara kondisi lingkungan dan aktivitas kebakaran.
-- Mengeksplorasi klasifikasi tingkat keparahan kebakaran berdasarkan data pendukung yang tersedia.
-- Menghasilkan visualisasi dan insight mengenai pola Karhutla pada ekosistem gambut.
+- Collect and integrate fire, geospatial, and environmental datasets.
+- Analyze spatial and temporal hotspot distribution.
+- Identify areas with concentrated fire activity.
+- Explore relationships between environmental conditions and fire occurrence.
+- Investigate fire severity analysis and prediction where valid target data are available.
+- Deliver processed datasets and geospatial database resources for analysis.
 
 ---
 
@@ -42,15 +42,14 @@ Cakupan penelitian meliputi lima provinsi di Pulau Kalimantan:
 | Ecosystem | Peatland Ecosystem |
 | Geographic Scope | Five Provinces in Kalimantan |
 | Main Analysis Period | September 1–30, 2026 |
-| Data Engineering | Data Acquisition, Processing, Integration, ETL |
+| Data Engineering | Acquisition, Processing, Integration, ETL, Database Management |
 | Data Analytics | EDA, Spatial Analysis, Temporal Analysis, Clustering |
-| Machine Learning | Fire Severity Classification, subject to data availability |
+| Machine Learning | Fire Severity Classification, subject to target data availability |
 | Dashboard | Google Looker Studio |
-| Final Output | Integrated Dataset, Geospatial Analysis, Analytical Results, Dashboard |
+| Database | PostgreSQL + PostGIS |
+| Final Output | Processed datasets, geospatial database, analytical results, dashboard, and documentation |
 
-**Important Note:**
-
-Data historis sebelum September 2026 dapat digunakan untuk membangun dan mengevaluasi model prediksi. September 2026 merupakan periode utama analisis proyek dan dapat digunakan sebagai periode pengujian apabila data target atau ground truth tersedia.
+Historical data may be considered for model development if suitable target labels and supporting variables are available. September 2026 serves as the primary study period.
 
 ---
 
@@ -58,133 +57,84 @@ Data historis sebelum September 2026 dapat digunakan untuk membangun dan mengeva
 
 ### A. Data Engineer — Sultan Naufal
 
-**Primary Responsibility:** Data acquisition, processing, integration, database management, and data pipeline development.
+**Primary Responsibility:** Data acquisition, processing, integration, database management, and data delivery.
 
-#### Phase 1 — Data Source Research
+- Research and evaluate data sources.
+- Develop data ingestion scripts.
+- Perform data profiling, cleaning, and transformation.
+- Handle missing values, duplicates, and data inconsistencies where applicable.
+- Validate attributes, dates, coordinates, and geometries.
+- Perform spatial processing and filtering based on the study area.
+- Design and implement PostgreSQL/PostGIS database structures.
+- Develop database loading scripts.
+- Manage database constraints, relationships, and spatial indexes.
+- Maintain data dictionary and technical documentation.
+- Prepare database backups and verify restoration.
+- Deliver processed datasets and database access to the Data Analyst.
 
-- Mengidentifikasi sumber data Karhutla dan data pendukung.
-- Memeriksa ketersediaan dan format dataset.
-- Mendokumentasikan sumber, lisensi, resolusi, dan cakupan temporal data.
-- Menentukan metode pengambilan data.
-
-#### Phase 2 — Data Processing
-
-- Melakukan data profiling.
-- Menangani missing values dan duplikasi.
-- Mengidentifikasi anomali data.
-- Memastikan konsistensi satuan pengukuran.
-- Mempertahankan data mentah sebagai sumber awal (*raw data preservation*).
-- Melakukan standarisasi format data.
-- Memvalidasi koordinat dan tanggal.
-- Menyesuaikan sistem koordinat geospasial (CRS).
-- Memfilter data berdasarkan wilayah dan periode penelitian.
-
-#### Phase 3 — Data Pipeline Development
-
-- Mengembangkan proses data ingestion.
-- Membuat proses extraction, transformation, dan loading.
-- Mengintegrasikan data dari berbagai sumber.
-- Menambahkan validasi kualitas data.
-- Mengimplementasikan logging dan error handling sesuai kebutuhan.
-- Menguji konsistensi hasil pipeline.
-
-#### Phase 4 — Database Management
-
-- Merancang struktur database.
-- Mengimplementasikan PostgreSQL dan PostGIS.
-- Menentukan tipe data dan constraint tabel.
-- Mengoptimalkan query database sesuai kebutuhan.
-- Menentukan struktur penyimpanan data spasial.
-- Membuat tabel staging dan tabel analitik.
-- Mengelola relasi dan spatial index.
-- Menyediakan dataset yang siap digunakan Data Analyst.
-
-#### Phase 5 — Documentation & Data Delivery
-
-- Membuat data dictionary.
-- Mendokumentasikan sumber dan alur data.
-- Menyediakan dataset hasil pemrosesan.
-- Melakukan validasi akhir.
-- Mendokumentasikan struktur database dan pipeline.
+**Status: Completed for the current Data Engineering scope.**
 
 ### B. Data Analyst — Daniel Putra
 
-**Primary Responsibility:** Exploratory analysis, spatial-temporal analysis, clustering, predictive modeling, and visualization.
+**Primary Responsibility:** Exploratory analysis, spatial-temporal analysis, clustering, modeling, and visualization.
 
-#### Phase 1 — Exploratory Data Analysis
+#### Exploratory Data Analysis
+- Examine dataset structure and characteristics.
+- Analyze hotspot distribution by province.
+- Explore temporal fire activity.
+- Investigate relationships between hotspots and environmental variables.
 
-- Memahami struktur dan karakteristik dataset.
-- Menganalisis distribusi hotspot.
-- Menganalisis jumlah hotspot berdasarkan provinsi.
-- Mengidentifikasi tren aktivitas kebakaran berdasarkan tanggal.
-- Mengeksplorasi hubungan hotspot dengan kondisi lingkungan.
+#### Spatial Analysis
+- Map hotspot distribution.
+- Identify areas with concentrated fire activity.
+- Overlay hotspots with peatland areas.
+- Analyze spatial distribution by administrative region.
 
-#### Phase 2 — Spatial Analysis
+#### Spatial-Temporal Clustering
+- Determine clustering variables.
+- Perform preprocessing.
+- Explore DBSCAN and appropriate distance metrics.
+- Evaluate clustering parameters.
+- Interpret spatial and temporal clustering patterns.
 
-- Memetakan distribusi hotspot.
-- Mengidentifikasi wilayah dengan konsentrasi hotspot tinggi.
-- Melakukan overlay hotspot dengan wilayah gambut.
-- Menganalisis distribusi berdasarkan wilayah administratif.
-- Membuat visualisasi geospasial.
+#### Fire Severity Analysis & Prediction
+- Assess target data availability and validity.
+- Develop relevant features.
+- Perform feature engineering.
+- Develop classification models when reliable target labels are available.
+- Evaluate and interpret model performance.
 
-#### Phase 3 — Spatial-Temporal Clustering
-
-- Menentukan variabel clustering.
-- Melakukan preprocessing.
-- Mengevaluasi penggunaan DBSCAN.
-- Menentukan parameter clustering.
-- Menganalisis distribusi dan perubahan cluster berdasarkan waktu.
-- Menginterpretasikan hasil clustering.
-
-#### Phase 4 — Fire Severity Analysis & Prediction
-
-- Memeriksa ketersediaan data untuk menentukan target severity.
-- Menentukan fitur prediksi.
-- Melakukan feature engineering.
-- Mengembangkan model klasifikasi apabila label target tersedia dan valid.
-- Mengevaluasi model menggunakan metrik yang sesuai.
-- Menginterpretasikan hasil model.
-
-#### Phase 5 — Visualization & Reporting
-
-- Membuat peta distribusi hotspot.
-- Memvisualisasikan hasil clustering.
-- Membuat grafik temporal.
-- Membuat visualisasi analisis severity.
-- Mengembangkan dashboard menggunakan Google Looker Studio.
-- Menyusun insight dan laporan akhir.
+#### Visualization & Reporting
+- Create spatial and temporal visualizations.
+- Present clustering results.
+- Develop a Google Looker Studio dashboard.
+- Prepare analytical insights and final reporting.
 
 ### Shared Responsibilities
 
-- Menentukan kebutuhan dan format data.
-- Menyepakati struktur dataset.
-- Melakukan integrasi Data Engineering dan Data Analytics.
-- Melakukan validasi hasil akhir.
-- Menyusun dokumentasi dan laporan proyek.
+- Agree on data requirements and formats.
+- Integrate Data Engineering and Data Analytics outputs.
+- Validate analytical results and data consistency.
+- Prepare final project documentation and presentation.
 
 ---
 
 ## 4. Data Sources
 
-Sumber data dipilih berdasarkan ketersediaan, kualitas, lisensi, resolusi spasial, dan kesesuaian periode penelitian.
-
-### Data Sources and Current Status
-
 | Dataset | Source | Purpose | Status |
 |---|---|---|---|
-| Fire Hotspots | NASA FIRMS | Identifikasi titik panas | Processed |
-| Administrative Boundaries | BIG | Batas wilayah administratif | Processed |
-| Peatland Distribution | BNPB InAWARE / Global Forest Watch | Identifikasi area gambut | Processed |
-| Rainfall | CHIRPS | Analisis curah hujan | Planned |
-| Weather Variables | ERA5 / ERA5-Land | Data cuaca | Planned |
-| Satellite Imagery | Sentinel-2 | Analisis area terbakar dan severity | Planned |
-| Land Cover | ESA WorldCover | Informasi tutupan lahan | Planned |
+| Fire Hotspots | NASA FIRMS | Fire detection analysis | Processed & loaded |
+| Administrative Boundaries | BIG | Study area boundaries | Processed & loaded |
+| Peatland Distribution | BNPB InAWARE / Global Forest Watch | Peatland spatial analysis | Processed & loaded |
+| Rainfall | CHIRPS | Environmental analysis | Downloaded & processed |
+| Satellite Imagery Metadata | Copernicus Data Space / Sentinel-2 | Imagery selection and spatial coverage | Metadata processed |
+| Weather Variables | ERA5 / ERA5-Land | Additional environmental analysis | Not implemented |
+| Land Cover | ESA WorldCover | Land cover analysis | Not implemented |
 
 ### Data Source Links
 
 - NASA FIRMS: https://firms.modaps.eosdis.nasa.gov/
 - BNPB GIS: https://gis.bnpb.go.id/
-- Google Earth Engine: https://earthengine.google.com/
 - Copernicus Data Space: https://dataspace.copernicus.eu/
 - CHIRPS: https://www.chc.ucsb.edu/data/chirps
 - ERA5: https://cds.climate.copernicus.eu/
@@ -196,23 +146,35 @@ Sumber data dipilih berdasarkan ketersediaan, kualitas, lisensi, resolusi spasia
 
 **NASA FIRMS**
 
-Menggunakan data VIIRS Suomi-NPP dengan produk near real-time (NRT). Dataset mentah mencakup periode September–Oktober 2026, kemudian difilter untuk mendapatkan data periode utama penelitian, yaitu September 2026.
+Hotspot data were obtained from VIIRS Suomi-NPP near-real-time detections. The original dataset covers September–October 2026 and was filtered to the September study period and the defined geographic study area.
+
+Hotspot detections indicate thermal anomalies and are not direct measurements of burned area or fire severity.
 
 **Administrative Boundaries**
 
-Menggunakan data batas administrasi dari BIG sebagai acuan wilayah penelitian untuk lima provinsi di Kalimantan.
+Administrative boundary data from BIG were processed to represent the five provinces included in the study.
 
 **Peatland Distribution**
 
-Menggunakan layer `Indonesia_peat_lands` dari BNPB InAWARE / Global Forest Watch. Dataset ini digunakan sebagai alternatif karena akses terhadap layanan peta gambut Kementerian Pertanian yang ditelusuri sebelumnya memerlukan autentikasi.
+The peatland dataset was obtained from the `Indonesia_peat_lands` layer associated with BNPB InAWARE / Global Forest Watch. It was used as an alternative to the peatland mapping service investigated earlier that required authentication.
 
-Data gambut yang digunakan merupakan hasil pengambilan berdasarkan bounding box Kalimantan dan belum merupakan hasil clipping terhadap batas provinsi. Informasi atribut dan tahun pembaruan sumber perlu diperhatikan ketika melakukan interpretasi.
+The source data were retrieved using a Kalimantan bounding box and were not clipped to provincial boundaries. Attribute definitions, source updates, and spatial accuracy should be considered during interpretation.
 
-**Important:** Tidak semua sumber data harus digunakan. Pemilihan akhir akan mengikuti hasil eksplorasi dan validasi ketersediaan dataset.
+**CHIRPS**
 
-## 5. Current Data Engineering Progress
+Daily rainfall rasters for September 2026 were downloaded and retained as GeoTIFF files. Raster files remain on disk, while their metadata and file references are stored in PostgreSQL.
 
-Bagian ini mendokumentasikan dataset yang telah dikumpulkan, diproses, dimuat ke database, dan divalidasi.
+**Sentinel-2**
+
+Sentinel-2 L2A product metadata and spatial footprints were collected for September 2026. The actual satellite imagery pixels have not yet been downloaded or processed for burned-area or severity analysis.
+
+Not all proposed datasets are required for the final analysis. Additional sources will depend on analytical requirements and data availability.
+
+---
+
+## 5. Data Engineering Progress
+
+The Data Engineering component has completed the initial acquisition, processing, integration, database implementation, and data delivery preparation for the five datasets listed below.
 
 ### A. Administrative Boundaries
 
@@ -224,7 +186,7 @@ Bagian ini mendokumentasikan dataset yang telah dikumpulkan, diproses, dimuat ke
 | CRS | EPSG:4326 |
 | Geometry Type | MultiPolygon |
 | Database Table | `karhutla.dim_provinces` |
-| Status | Loaded and validated |
+| Status | Processed, loaded & validated |
 
 ### B. NASA FIRMS Hotspots
 
@@ -235,15 +197,15 @@ Bagian ini mendokumentasikan dataset yang telah dikumpulkan, diproses, dimuat ke
 | Instrument | VIIRS |
 | Product Version | 2.0NRT |
 | Raw Records | 210,915 |
-| Raw Date Range | September 1 – October 31, 2026 |
+| Raw Date Range | September–October 2026 |
 | September Records | 115,739 |
 | Records Within Study Area | 115,137 |
 | Unmatched Records | 602 |
 | CRS | EPSG:4326 |
 | Database Table | `karhutla.fact_hotspots` |
-| Status | Loaded and validated |
+| Status | Processed, loaded & validated |
 
-The 602 unmatched records are retained separately for further inspection. They are not automatically classified as detections outside Indonesia.
+The 602 unmatched records are retained separately for inspection. They are not automatically classified as detections outside Indonesia.
 
 ### C. Peatland Dataset
 
@@ -256,12 +218,12 @@ The 602 unmatched records are retained separately for further inspection. They a
 | CRS | EPSG:4326 |
 | Valid Geometries | 350 |
 | Unique Features | 350 |
-| Normalized Category | 348 gambut, 2 unknown |
+| Normalized Category | 348 peatland, 2 unknown |
 | Province Relationships | 353 |
 | Database Table | `karhutla.dim_peatlands` |
-| Status | Loaded and validated |
+| Status | Processed, loaded & validated |
 
-The peatland polygons were not clipped to provincial boundaries. The province relationship table records spatial intersections between peatland features and administrative boundaries. Three peatland features intersect more than one province, resulting in 353 relationships from 350 unique features.
+Peatland features were not clipped to provincial boundaries. The province relationship dataset records spatial intersections between peatland features and administrative boundaries. Three peatland features intersect multiple provinces, resulting in 353 relationships from 350 unique features.
 
 ### D. CHIRPS Rainfall Data
 
@@ -270,17 +232,17 @@ The peatland polygons were not clipped to provincial boundaries. The province re
 | Source | CHIRPS |
 | Data Type | Daily Raster |
 | Period | September 1–30, 2026 |
-| Number of Raster Files | 30 |
+| Raster Files | 30 |
 | CRS | EPSG:4326 |
 | Raster Dimensions | 210 × 188 pixels |
 | Number of Bands | 1 |
-| Spatial Resolution | 0.05° × 0.05° |
+| Spatial Resolution | 0.05° |
 | NoData Value | -9999 |
-| Storage | GeoTIFF files |
+| Storage | GeoTIFF |
 | Database Table | `karhutla.chirps_raster_metadata` |
-| Status | Metadata loaded and validated |
+| Status | Downloaded, processed & metadata loaded |
 
-The raster files remain stored as GeoTIFF files on disk. PostgreSQL stores their metadata and file references rather than individual raster pixels.
+Raster pixels remain stored in GeoTIFF files. PostgreSQL contains metadata and file references rather than raster pixel values.
 
 ### E. Sentinel-2 Data
 
@@ -296,9 +258,9 @@ The raster files remain stored as GeoTIFF files on disk. PostgreSQL stores their
 | CRS | EPSG:4326 |
 | Average Product Cloud Cover | 16.67% |
 | Database Table | `karhutla.sentinel2_products` |
-| Status | Metadata and footprints loaded and validated |
+| Status | Metadata and footprints processed, loaded & validated |
 
-The current implementation stores Sentinel-2 product metadata and spatial footprints. The actual satellite imagery has not yet been downloaded or processed for burned-area and severity analysis.
+The current implementation contains product metadata and spatial footprints only. The imagery pixels have not been downloaded or processed.
 
 ### F. Database Implementation
 
@@ -313,9 +275,9 @@ The current implementation stores Sentinel-2 product metadata and spatial footpr
 | Spatial Reference System | EPSG:4326 |
 | Spatial Index | GiST |
 | Backup Format | PostgreSQL Custom Format |
-| Status | Implemented and validated |
+| Status | Implemented & validated |
 
-Database tables:
+#### Database Tables
 
 | Table | Records |
 |---|---:|
@@ -326,15 +288,16 @@ Database tables:
 | `chirps_raster_metadata` | 30 |
 | **Total** | **115,736** |
 
-### G. Database Validation
+### G. Database & Data Validation
 
 - All 115,137 hotspot records have valid province references.
-- No invalid province references were found.
+- No invalid province references were identified.
 - All 115,706 spatial features have valid geometries.
-- All geometry tables use EPSG:4326.
-- GiST spatial indexes have been created for all four spatial tables.
-- Database backup has been created and its archive contents inspected.
-- Actual database restoration test is still pending.
+- Spatial tables use EPSG:4326.
+- GiST spatial indexes are implemented for all four spatial tables.
+- Database backup was created using PostgreSQL custom format.
+- Restoration testing was successfully completed on a temporary database.
+- Restored table counts and PostGIS configuration were verified.
 
 ### Data Engineering Summary
 
@@ -345,33 +308,30 @@ Database tables:
 | Peatland | Completed | Completed | Passed |
 | CHIRPS | Completed | Completed | Passed |
 | Sentinel-2 Metadata | Completed | Completed | Passed |
-| ERA5 / Weather | Pending | Pending | Pending |
-| Land Cover | Pending | Pending | Pending |
+| ERA5 / Weather | Not implemented | Not implemented | Not applicable |
+| Land Cover | Not implemented | Not implemented | Not applicable |
 
-**Current Status:** Initial data acquisition, processing, database implementation, loading, and validation have been completed for the five datasets listed above.
+**Data Engineering Status: Completed for the current project scope.**
+
+---
 
 ## 6. Technology Stack
 
-Technology stack disusun berdasarkan kebutuhan proyek. Tools yang bersifat opsional hanya akan digunakan apabila memang diperlukan.
-
 ### Data Engineering
 
-| Technology | Purpose | Status |
-|---|---|---|
-| Python | Main programming language | Used |
-| Pandas | Data manipulation | Used |
-| NumPy | Numerical processing | Used |
-| GeoPandas | Geospatial processing | Used |
-| Shapely | Geometry operations | Used |
-| Pyogrio / Fiona | Geospatial file I/O | As needed |
-| Requests | API data acquisition | Used |
-| Rasterio | Raster processing | As needed |
-| SQL | Database queries | Planned |
-| PostgreSQL | Relational database | Selected |
-| PostGIS | Spatial database extension | Selected |
-| Prefect | Workflow orchestration | Optional |
-| Docker | Environment management | Optional |
-| Git & GitHub | Version control | Used |
+| Technology | Purpose |
+|---|---|
+| Python | Data acquisition and processing |
+| Pandas | Tabular data manipulation |
+| NumPy | Numerical operations |
+| GeoPandas | Geospatial processing |
+| Shapely | Geometry operations |
+| Requests | Data acquisition |
+| Rasterio | Raster data processing |
+| SQL | Database queries |
+| PostgreSQL | Relational database |
+| PostGIS | Geospatial database extension |
+| Git & GitHub | Version control |
 
 ### Data Analytics & Machine Learning
 
@@ -383,99 +343,65 @@ Technology stack disusun berdasarkan kebutuhan proyek. Tools yang bersifat opsio
 | Scikit-learn | Clustering and machine learning |
 | DBSCAN | Spatial clustering |
 | Random Forest | Candidate classification model |
-| XGBoost | Candidate comparison model |
-| Matplotlib / Seaborn | Data visualization |
-| Folium | Interactive geospatial maps |
+| XGBoost | Candidate model comparison |
+| Matplotlib / Seaborn | Visualization |
+| Folium | Interactive maps |
 
 ### Dashboard & Supporting Tools
 
 | Tool | Purpose |
 |---|---|
-| Google Looker Studio | Analytical dashboard |
-| Google Sheets | Possible dashboard data source |
-| BigQuery | Optional analytical data delivery |
+| Google Looker Studio | Dashboard development |
+| Google Sheets | Supporting data source, if needed |
 | VS Code | Development environment |
 | DBeaver | Database management |
-| QGIS | Geospatial data inspection |
+| QGIS | Geospatial inspection |
 | Jupyter Notebook / Google Colab | Data exploration and experimentation |
 
 ---
 
 ## 7. System Architecture
 
-The project follows an end-to-end data workflow consisting of data acquisition, processing, storage, analytics, and visualization.
+The project follows a batch data workflow. External datasets are acquired, stored, processed, validated, and loaded into PostgreSQL/PostGIS for downstream analysis.
 
 ```mermaid
 flowchart TD
-    A["DATA SOURCES"]
-    A1["NASA FIRMS"]
-    A2["Weather Data"]
-    A3["Peatland Maps"]
-    A4["Administrative Maps"]
-    A5["Satellite Imagery"]
-
-    B["DATA INGESTION"]
-    C["RAW DATA STORAGE"]
-    D["DATA PROCESSING"]
-    D1["Cleaning"]
-    D2["Validation"]
-    D3["Transformation"]
-    D4["Spatial Integration"]
-
-    E["POSTGRESQL + POSTGIS"]
-    F["ANALYTICAL DATASET"]
-
-    G["DATA ANALYTICS"]
-    G1["EDA"]
-    G2["Spatial & Temporal Analysis"]
-    G3["Clustering"]
-    G4["Severity Analysis & Prediction"]
-
-    H["DATA DELIVERY"]
-    I["GOOGLE LOOKER STUDIO"]
-
-    A --> B
-    A1 --> B
-    A2 --> B
-    A3 --> B
-    A4 --> B
-    A5 --> B
-    B --> C
-    C --> D
-    D --> D1
-    D --> D2
-    D --> D3
-    D --> D4
-    D --> E
-    E --> F
-    F --> G
-    G --> G1
-    G --> G2
-    G --> G3
-    G --> G4
-    G --> H
-    H --> I
+    A[External Data Sources] --> B[Data Ingestion]
+    B --> C[Raw Data Storage]
+    C --> D[Data Processing]
+    D --> E[Cleaning & Transformation]
+    E --> F[Validation & Spatial Processing]
+    F --> G[PostgreSQL + PostGIS]
+    G --> H[Data Analytics]
+    H --> I[EDA]
+    H --> J[Spatial & Temporal Analysis]
+    H --> K[Clustering]
+    H --> L[Severity Analysis, Subject to Data Availability]
+    I --> M[Visualization & Reporting]
+    J --> M
+    K --> M
+    L --> M
+    M --> N[Google Looker Studio]
 ```
-**Architecture Status:** The initial data engineering architecture has been implemented for administrative boundaries, FIRMS hotspots, peatland data, CHIRPS raster metadata, and Sentinel-2 product metadata and footprints.
 
-The PostgreSQL/PostGIS database has been created and populated with five tables. Initial data validation, spatial integrity checks, indexing, and database backup have also been completed.
+### Architecture Status
 
-The following stages remain in progress:
-- Database restoration testing.
-- Analytical dataset preparation and delivery.
-- End-to-end pipeline orchestration and testing.
-- Data Analyst integration.
-- Dashboard development and final visualization.
+The Data Engineering workflow has been implemented for administrative boundaries, FIRMS hotspots, peatland data, CHIRPS raster metadata, and Sentinel-2 product metadata and footprints.
+
+The processed datasets are stored in PostgreSQL/PostGIS or maintained as external files with database metadata references where appropriate.
+
+The Data Engineering deliverables have been prepared for use by the Data Analyst.
 
 ---
 
-## 8. Database Design and Implementation
+## 8. Database Design & Implementation
 
-The project uses PostgreSQL 18.6 with PostGIS 3.7.0 to store and manage tabular and geospatial datasets.
+The project uses PostgreSQL 18.6 with PostGIS 3.7.0.
 
-The database is named `karhutla_db`, with the primary project schema named `karhutla`.
+- Database: `karhutla_db`
+- Schema: `karhutla`
 
-### Implemented Database Tables
+### Implemented Tables
 
 | Table | Description |
 |---|---|
@@ -483,101 +409,93 @@ The database is named `karhutla_db`, with the primary project schema named `karh
 | `karhutla.dim_peatlands` | Peatland polygon features and source attributes |
 | `karhutla.fact_hotspots` | NASA FIRMS hotspot detections |
 | `karhutla.sentinel2_products` | Sentinel-2 product metadata and spatial footprints |
-| `karhutla.chirps_raster_metadata` | Metadata and file references for daily CHIRPS raster datasets |
+| `karhutla.chirps_raster_metadata` | Metadata and file references for CHIRPS rainfall rasters |
 
-### Database Implementation
+### Database Features
 
 - Primary keys and unique constraints.
-- Foreign key relationship between hotspot records and provinces.
+- Foreign key relationships between hotspots and provinces.
 - Geometry columns using EPSG:4326.
-- GiST spatial indexes for spatial tables.
-- B-tree indexes for frequently queried attributes.
+- GiST spatial indexes.
+- B-tree indexes for selected attributes.
 - Check constraints for applicable fields.
-- Database backup using PostgreSQL custom format.
+- PostgreSQL custom-format database backup.
+- Verified database restoration.
 
 ### Data Storage Strategy
 
 Vector datasets are stored in PostGIS geometry columns.
 
-CHIRPS raster files remain stored as GeoTIFF files on disk, while their metadata and file references are maintained in PostgreSQL.
+CHIRPS rainfall rasters remain as GeoTIFF files on disk. PostgreSQL stores their metadata and file references.
 
-Sentinel-2 imagery is not yet stored in the database. The current database contains product metadata and spatial footprints.
+Sentinel-2 imagery pixels are not stored. Only product metadata and spatial footprints are currently available in the database.
 
-### Next Steps
-
-- Perform database restoration testing.
-- Prepare analytical datasets for downstream analysis.
-- Develop repeatable data pipelines.
-- Document database relationships and data dictionary.
-- Deliver validated data to the Data Analyst.
-
-**Database Status:** Implemented, populated, and initially validated.
+For database connection instructions, schema details, sample queries, and restoration procedures, refer to the database documentation and analysis handover files.
 
 ---
 
 ## 9. Proposed Analytical Methods
 
-Metode analisis akan disesuaikan dengan karakteristik dan ketersediaan data.
+The Data Analytics workflow is conducted by the Data Analyst using the processed datasets delivered by Data Engineering.
 
 | Method | Purpose | Responsible |
 |---|---|---|
-| Data Profiling | Memahami kualitas data | Data Engineer |
-| ETL | Pengolahan dan integrasi data | Data Engineer |
-| Spatial Overlay | Analisis hubungan hotspot dan gambut | Shared |
-| EDA | Memahami karakteristik data | Data Analyst |
-| Spatial Analysis | Menganalisis distribusi geografis | Data Analyst |
-| Temporal Analysis | Menganalisis pola waktu | Data Analyst |
-| DBSCAN | Mengidentifikasi cluster hotspot | Data Analyst |
-| Random Forest | Kandidat model klasifikasi | Data Analyst |
-| XGBoost | Kandidat model pembanding | Data Analyst |
+| Data Profiling | Understand data characteristics and quality | Shared |
+| Exploratory Data Analysis | Explore distribution and trends | Data Analyst |
+| Spatial Overlay | Explore hotspot and peatland intersections | Data Analyst |
+| Spatial Analysis | Analyze geographic fire patterns | Data Analyst |
+| Temporal Analysis | Analyze fire activity over time | Data Analyst |
+| DBSCAN | Identify spatial or spatial-temporal clusters | Data Analyst |
+| Random Forest | Candidate classification model | Data Analyst |
+| XGBoost | Candidate model comparison | Data Analyst |
+
+The final analytical methods will depend on data availability, feature quality, research objectives, and model evaluation results.
 
 ---
 
 ## 10. Important Methodological Considerations
 
-### 1. Hotspot is not the same as fire severity
+### 1. Hotspot Detection vs. Fire Severity
 
-Data hotspot NASA FIRMS merupakan deteksi anomali termal, bukan pengukuran langsung tingkat keparahan kebakaran.
+NASA FIRMS hotspots represent thermal detections, not direct measurements of burned area or fire severity.
 
-Diperlukan data tambahan seperti Sentinel-2 untuk memperoleh informasi perubahan vegetasi atau area terbakar dan membentuk label severity yang dapat dipertanggungjawabkan.
+Fire severity analysis requires additional data and a defensible methodology for deriving target labels, such as satellite-based burned-area or vegetation-change indicators.
 
-### 2. Peatland data limitations
+### 2. Peatland Dataset Limitations
 
-Dataset gambut yang digunakan merupakan alternatif dari layer BNPB InAWARE / Global Forest Watch. Dataset ini tidak boleh langsung dianggap setara dengan peta gambut skala 1:50.000 dari Kementerian Pertanian.
+The peatland dataset is an alternative layer obtained from BNPB InAWARE / Global Forest Watch. It should not be assumed to be equivalent to a specific official peatland map at a different scale or accuracy.
 
-Tahun pembaruan, definisi atribut, dan ketelitian spasial sumber perlu dipertimbangkan dalam interpretasi hasil.
+Source attributes, update year, and spatial accuracy should be considered during interpretation.
 
-### 3. Temporal clustering
+### 3. Spatial-Temporal Clustering
 
-Clustering perlu mempertimbangkan koordinat dan waktu kejadian. Pemilihan metode jarak dan parameter harus disesuaikan dengan karakteristik data.
+Clustering methods must account for spatial coordinates and temporal characteristics. Distance metrics, scaling, and parameters should be selected based on the analytical objective.
 
-### 4. Severity prediction
+### 4. Severity Prediction
 
-Model klasifikasi severity hanya dikembangkan apabila target label tersedia, valid, dan memiliki dasar metodologi yang jelas.
+Severity prediction should only be developed when valid target labels and relevant features are available. Hotspot detections alone should not be treated as severity labels.
 
-### 5. Model validation
+### 5. Model Validation
 
-Pembagian data perlu mempertimbangkan urutan waktu untuk mengurangi risiko data leakage.
+Temporal characteristics should be considered when splitting datasets for model evaluation to reduce data leakage and ensure appropriate validation.
 
-### 6. Data availability
+### 6. Data Availability
 
-Ketersediaan data, resolusi spasial, temporal coverage, dan kualitas sumber akan memengaruhi metode analisis yang dapat diterapkan.
+Data availability, spatial resolution, temporal coverage, and source quality may limit the analyses that can be conducted.
 
 ---
 
 ## 11. Repository Structure
 
-The repository is organized into dedicated directories for data storage, data engineering, data analytics, database management, documentation, and dashboard development.
-
 ```text
 karhutla-spatial-temporal-analysis/
-│
 ├── README.md
 ├── requirements.txt
 ├── .gitignore
 ├── LICENSE
 │
 ├── dashboard/
+│   ├── README.md
 │   └── exports/
 │
 ├── data/
@@ -587,36 +505,26 @@ karhutla-spatial-temporal-analysis/
 │   │   ├── firms/
 │   │   ├── peatland/
 │   │   └── sentinel2/
-│   │
 │   ├── staging/
 │   │   └── sentinel2/
-│   │
 │   ├── processed/
 │   │   ├── boundaries/
-│   │   ├── chirps/
-│   │   │   └── daily/
+│   │   ├── chirps/daily/
 │   │   ├── firms/
 │   │   └── peatland/
-│   │
 │   └── final/
 │
 ├── database/
 │   ├── backup/
 │   ├── schema/
-│   ├── staging/
-│   └── analytical_mart/
+│   └── README.md
 │
 ├── data_engineering/
 │   ├── ingestion/
 │   ├── transformation/
-│   ├── validation/
-│   ├── pipelines/
-│   │
-│   ├── database/
-│   │   ├── scripts/
-│   │   └── sql/
-│   │
-│   └── sql/
+│   └── database/
+│       ├── scripts/
+│       └── db_config.py
 │
 ├── data_analytics/
 │   ├── notebooks/
@@ -626,9 +534,8 @@ karhutla-spatial-temporal-analysis/
 │   └── visualization/
 │
 ├── docs/
-│   ├── architecture/
+│   ├── analysis_handover/
 │   ├── data_dictionary/
-│   ├── methodology/
 │   └── reports/
 │
 └── tests/
@@ -638,50 +545,38 @@ karhutla-spatial-temporal-analysis/
 
 | Directory | Description |
 |---|---|
-| `data/raw/` | Original datasets collected from external sources, preserved in their original form. |
-| `data/staging/` | Intermediate datasets prepared for processing and integration. |
-| `data/processed/` | Cleaned, transformed, and validated datasets. |
-| `data/final/` | Final datasets prepared for analytical consumption and delivery. |
-| `database/backup/` | Database backup files. |
-| `database/schema/` | Database schema definitions and SQL scripts. |
-| `database/staging/` | Database staging objects and intermediate data. |
-| `database/analytical_mart/` | Analytical tables and datasets prepared for downstream analysis. |
-| `data_engineering/ingestion/` | Scripts for acquiring data from external sources. |
-| `data_engineering/transformation/` | Scripts and notebooks for data cleaning and transformation. |
-| `data_engineering/validation/` | Data quality checks and validation procedures. |
-| `data_engineering/pipelines/` | Data pipeline implementation and workflow orchestration. |
-| `data_engineering/database/scripts/` | Python scripts for loading datasets into PostgreSQL/PostGIS. |
-| `data_engineering/database/sql/` | SQL scripts used for database implementation and management. |
-| `data_engineering/sql/` | Additional SQL queries and data processing scripts. |
-| `data_analytics/notebooks/` | Notebooks for exploratory data analysis and experimentation. |
-| `data_analytics/clustering/` | Spatial and temporal clustering implementation. |
-| `data_analytics/modeling/` | Machine learning model development. |
-| `data_analytics/evaluation/` | Model evaluation and performance assessment. |
-| `data_analytics/visualization/` | Analytical charts, maps, and visualization outputs. |
-| `dashboard/` | Dashboard development resources and exported outputs. |
-| `docs/architecture/` | System architecture and workflow documentation. |
-| `docs/data_dictionary/` | Dataset descriptions, column definitions, and data specifications. |
-| `docs/methodology/` | Research methodology and analytical procedures. |
-| `docs/reports/` | Project progress reports and technical documentation. |
-| `tests/` | Tests for data processing, validation, and pipeline components. |
+| `data/raw/` | Original datasets collected from external sources |
+| `data/staging/` | Intermediate datasets prepared for processing |
+| `data/processed/` | Cleaned, transformed, and validated datasets |
+| `data/final/` | Datasets prepared for analytical consumption, if applicable |
+| `database/schema/` | SQL schema definitions |
+| `database/backup/` | PostgreSQL database backups |
+| `data_engineering/ingestion/` | Data acquisition scripts |
+| `data_engineering/transformation/` | Data cleaning and transformation scripts/notebooks |
+| `data_engineering/database/scripts/` | Python database loading scripts |
+| `data_analytics/` | Analytics notebooks, clustering, modeling, evaluation, and visualization |
+| `dashboard/` | Dashboard development resources and exports |
+| `docs/analysis_handover/` | Data Engineering to Data Analytics documentation |
+| `docs/data_dictionary/` | Dataset definitions and column documentation |
+| `docs/reports/` | Technical documentation and project progress reports |
+| `tests/` | Test scripts, when implemented |
+
 ---
 
 ## 12. Project Milestones
 
-Estimated development timeline: 6–8 weeks.
-
 | Phase | Data Engineer | Data Analyst |
 |---|---|---|
 | 1. Research | Data source research | Methodology research |
-| 2. Acquisition | Data ingestion | Initial data exploration |
-| 3. Processing | Cleaning and transformation | EDA and spatial analysis |
-| 4. Database | Database development | Clustering |
-| 5. Integration | Analytical dataset delivery | Feature engineering |
-| 6. Development | Pipeline testing | Predictive modeling |
-| 7. Visualization | Data delivery | Dashboard development |
-| 8. Finalization | Documentation and integration | Evaluation and reporting |
+| 2. Acquisition | Data ingestion | Initial exploration |
+| 3. Processing | Cleaning & transformation | EDA & spatial analysis |
+| 4. Database | Database implementation | Clustering |
+| 5. Integration | Data delivery & handover | Feature engineering |
+| 6. Analysis | Support data requirements | Clustering & modeling |
+| 7. Visualization | Data support | Dashboard development |
+| 8. Finalization | Documentation complete | Evaluation & reporting |
 
-*Timeline merupakan estimasi dan dapat berubah mengikuti ketersediaan data serta kompleksitas pengolahan.*
+The Data Engineering phase has been completed for the current scope. Data Analytics and final project integration remain in progress.
 
 ---
 
@@ -689,76 +584,55 @@ Estimated development timeline: 6–8 weeks.
 
 ### Data Engineering
 
-- [x] Data sources telah diidentifikasi dan didokumentasikan.
-- [x] Dataset batas administrasi berhasil dikumpulkan dan diproses.
-- [x] Dataset FIRMS berhasil dikumpulkan dan diproses.
-- [x] Dataset gambut berhasil dikumpulkan dan diproses.
-- [x] Dataset CHIRPS berhasil dikumpulkan dan diproses.
-- [x] Metadata dan footprint Sentinel-2 berhasil dikumpulkan dan diproses.
-- [x] Dataset awal telah melalui profiling dan validasi.
-- [x] Database PostgreSQL berhasil diimplementasikan.
-- [x] PostGIS berhasil diaktifkan dan dikonfigurasi.
-- [x] Struktur schema dan tabel database berhasil dibuat.
-- [x] Data berhasil dimuat ke dalam database.
-- [x] Relasi antar tabel dan foreign key telah divalidasi.
-- [x] Geometri spasial dan CRS telah divalidasi.
-- [x] Spatial index dan database index telah dibuat.
-- [x] Database backup berhasil dibuat.
-- [ ] Database restore test berhasil dilakukan.
-- [ ] Analytical dataset tersedia untuk Data Analyst.
-- [ ] Pipeline end-to-end dapat dijalankan dan diuji secara menyeluruh.
-- [ ] Logging dan error handling pipeline diselesaikan.
-- [ ] Dokumentasi teknis dan data dictionary lengkap.
-- [ ] Final data delivery dan handover selesai.
+- [x] Data sources identified and documented.
+- [x] Administrative boundaries acquired and processed.
+- [x] FIRMS data acquired and processed.
+- [x] Peatland data acquired and processed.
+- [x] CHIRPS data acquired and processed.
+- [x] Sentinel-2 metadata and footprints acquired and processed.
+- [x] Data profiling and validation performed.
+- [x] PostgreSQL database implemented.
+- [x] PostGIS configured.
+- [x] Database schema implemented.
+- [x] Processed data loaded into database.
+- [x] Relationships and foreign key integrity validated.
+- [x] Spatial geometries and CRS validated.
+- [x] Spatial indexes implemented.
+- [x] Database backup created.
+- [x] Database restoration tested.
+- [x] Data dictionary and documentation completed.
+- [x] Data delivery and handover completed.
 
 ### Data Analytics
 
-- [ ] EDA selesai.
-- [ ] Spatial analysis selesai.
-- [ ] Temporal analysis selesai.
-- [ ] Clustering dilakukan dan dievaluasi.
-- [ ] Severity analysis dilakukan.
-- [ ] Model prediksi dikembangkan jika target data tersedia.
-- [ ] Dashboard selesai.
-- [ ] Laporan hasil analisis tersedia.
+- [ ] EDA completed.
+- [ ] Spatial analysis completed.
+- [ ] Temporal analysis completed.
+- [ ] Clustering conducted and evaluated.
+- [ ] Fire severity analysis conducted, subject to data availability.
+- [ ] Predictive model developed, if valid target data are available.
+- [ ] Dashboard completed.
+- [ ] Analytical report completed.
 
 ### Final Integration
 
-- [ ] Data Engineering dan Data Analytics terintegrasi.
-- [ ] Kode dan dokumentasi tersedia di GitHub.
-- [ ] Hasil proyek dapat direproduksi.
-- [ ] Seluruh hasil telah melalui validasi.
-
-### Data Analytics
-
-- [ ] EDA selesai.
-- [ ] Spatial analysis selesai.
-- [ ] Temporal analysis selesai.
-- [ ] Clustering dilakukan dan dievaluasi.
-- [ ] Severity analysis dilakukan.
-- [ ] Model prediksi dikembangkan jika target data tersedia.
-- [ ] Dashboard selesai.
-- [ ] Laporan hasil analisis tersedia.
-
-### Final Integration
-
-- [ ] Data Engineering dan Data Analytics terintegrasi.
-- [ ] Kode dan dokumentasi tersedia di GitHub.
-- [ ] Hasil proyek dapat direproduksi.
-- [ ] Seluruh hasil telah melalui validasi.
+- [ ] Data Engineering and Data Analytics outputs integrated.
+- [ ] Code and documentation maintained in GitHub.
+- [ ] Analytical workflow reproducibility reviewed.
+- [ ] Final project results validated.
 
 ---
 
 ## 14. Expected Final Deliverables
 
-1. Data Collection and Processing Pipeline.
-2. PostgreSQL + PostGIS Geospatial Database.
-3. Integrated Analytical Dataset.
-4. Spatial-Temporal Clustering Results.
-5. Fire Severity Analysis and Prediction, subject to data availability.
-6. Google Looker Studio Dashboard.
-7. Technical Documentation.
-8. Final Analytical Report.
+1. Processed and documented datasets.
+2. PostgreSQL + PostGIS geospatial database.
+3. Data Engineering documentation and data dictionary.
+4. Spatial-temporal clustering results.
+5. Fire severity analysis and prediction, subject to data availability.
+6. Google Looker Studio dashboard.
+7. Final analytical report.
+8. Project presentation.
 
 ---
 
@@ -766,17 +640,16 @@ Estimated development timeline: 6–8 weeks.
 
 | Name | Role | Main Responsibility |
 |---|---|---|
-| Sultan Naufal | Data Engineer | Data Acquisition, ETL, Database, Data Integration |
+| Sultan Naufal | Data Engineer | Data Acquisition, Processing, ETL, Database, Data Integration |
 | Daniel Putra | Data Analyst | EDA, Spatial Analysis, Clustering, Machine Learning, Visualization |
 
 ---
 
-**Project Status:** In Progress
-
-**Project Domain:** Environmental Data Engineering & Geospatial Analytics
-
-**Main Analysis Period:** September 2026
-
+**Project Status:** In Progress  
+**Data Engineering Status:** Completed  
+**Data Analytics Status:** In Progress  
+**Project Domain:** Environmental Data Engineering & Geospatial Analytics  
+**Main Analysis Period:** September 2026  
 **Project Location:** Kalimantan, Indonesia
 
-**Project Goal:** Developing an end-to-end data solution to analyze spatial-temporal fire patterns and investigate fire severity in peatland ecosystems across Kalimantan.
+**Project Goal:** Developing a geospatial data solution to analyze spatial-temporal fire patterns and investigate fire severity in peatland ecosystems across Kalimantan.
